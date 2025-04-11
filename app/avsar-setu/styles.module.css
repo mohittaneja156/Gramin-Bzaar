@@ -1,0 +1,625 @@
+/* --- Main Container --- */
+.container {
+    max-width: 480px; /* Mobile-first constraint */
+    margin: 0 auto;
+    padding: 0 15px; /* Side padding */
+    background-color: white; /* Explicitly set to white instead of var */
+    min-height: 100vh; /* Make container take full height */
+}
+
+/* --- Header Styling --- */
+.header {
+    /* Using Pink/Secondary for Avsar Setu focus */
+    background: linear-gradient(135deg, var(--secondary), #f9a8d4);
+    color: white;
+    padding: 25px 20px;
+    border-radius: 0 0 30px 30px; /* Rounded bottom corners */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+    position: relative; /* For back button positioning */
+}
+
+.headerTitle {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.headerTitle i {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    stroke-width: 2.5;
+}
+
+.headerSubtitle {
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* --- Tab Navigation --- */
+.tabs {
+    display: flex;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.tabButton {
+    flex: 1;
+    padding: 12px 5px;
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border-bottom: 3px solid transparent;
+}
+
+.tabButton i {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+.tabButton.active {
+    color: var(--secondary); /* Pink for active tab */
+    font-weight: 600;
+    border-bottom-color: var(--secondary);
+}
+
+.tabButton:not(:last-child) {
+    border-right: 1px solid #eee; /* Separator */
+}
+
+/* --- Tab Content Area --- */
+.tabContent {
+    display: none; /* Hide all content by default */
+    animation: fadeIn 0.5s ease; /* Add a fade-in effect */
+}
+
+.tabContent.active {
+    display: block; /* Show active content */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Section Title --- */
+.sectionTitle {
+    color: var(--accent); /* Dark teal accent */
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.sectionTitle i {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    stroke-width: 2.5;
+    color: var(--accent); /* Match text color */
+}
+
+/* --- Tender Card Styling --- */
+.tenderCard {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+    border-left: 5px solid var(--warning); /* Amber for tenders */
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.tenderIconContainer {
+    width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--warning), #fbbf24); /* Amber gradient */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+}
+
+.tenderIconContainer i {
+    width: 30px;
+    height: 30px;
+    stroke-width: 2;
+}
+
+.tenderDetails {
+    flex: 1;
+}
+
+.tenderTitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.tenderMeta {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 15px; /* Row and column gap */
+}
+
+.tenderMeta span {
+    display: flex;
+    align-items: center;
+}
+
+.tenderMeta i {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    stroke-width: 2;
+}
+
+.detailsBtn {
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent); /* Darker Teal */
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex; /* Use inline-flex */
+    align-items: center;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.detailsBtn:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.detailsBtn i {
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+    stroke-width: 2.5;
+}
+
+/* --- B2B Connection Card Styling --- */
+.b2bCard {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 20px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.b2bIconContainer {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    color: white;
+}
+
+.buyerIcon {
+    background: linear-gradient(135deg, var(--info), #60a5fa); /* Blue for buyers */
+}
+
+.supplierIcon {
+    background: linear-gradient(135deg, var(--success), #34d399); /* Green for suppliers */
+}
+
+.b2bIconContainer i {
+    width: 30px;
+    height: 30px;
+    stroke-width: 2;
+}
+
+.b2bTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.b2bDesc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+/* --- Form Styling --- */
+.formSection {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+.formTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.formTitle i {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.formGroup label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9fafb;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.formGroup textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.submitBtn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, var(--secondary), #f9a8d4); /* Pink gradient */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+}
+
+.submitBtn:hover {
+    opacity: 0.9;
+    box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4);
+}
+
+/* --- Resource Card Styling --- */
+.resourceCard {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb; /* Light border */
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+    gap: 15px;
+}
+
+.resourceCard:hover {
+    border-color: var(--purple);
+    transform: translateY(-2px);
+}
+
+.resourceIconContainer {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+}
+
+/* Specific colors for resource types */
+.docs { background: linear-gradient(135deg, var(--purple), var(--purple-light)); } /* Purple */
+.gem { background: linear-gradient(135deg, var(--success), #34d399); } /* Green */
+.kendra { background: linear-gradient(135deg, var(--info), #60a5fa); } /* Blue */
+.bidding { background: linear-gradient(135deg, var(--secondary), #f9a8d4); } /* Pink */
+
+.resourceIconContainer i {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.resourceContent {
+    flex: 1;
+}
+
+.resourceTitle {
+    font-weight: 600; /* Bolder */
+    margin-bottom: 4px;
+    font-size: 15px;
+    color: var(--text-dark);
+}
+
+.resourceDesc {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+.chevronIcon {
+    color: var(--text-light);
+    margin-left: auto;
+    width: 18px;
+    height: 18px;
+}
+
+/* --- Bottom Navigation Styling --- */
+.bottomNav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 480px; /* Match container */
+    margin: 0 auto; /* Center nav on wider screens */
+    background: white;
+    display: flex;
+    height: 65px;
+    padding: 5px 0;
+    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08);
+    border-top: 1px solid #f0f0f0;
+    z-index: 100;
+}
+
+.navItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    position: relative; /* Needed for potential notification dots */
+}
+
+.navItem:hover {
+    color: var(--secondary);
+}
+
+.navIcon {
+    margin-bottom: 4px;
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+.navItem.active {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.navItem.active .navIcon {
+    color: var(--secondary);
+}
+
+/* Floating Action Button (FAB) */
+.floatButton {
+    position: fixed;
+    bottom: 30px; /* Position above bottom nav */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--secondary), #f9a8d4);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+    cursor: pointer;
+    z-index: 101; /* Increase z-index to be higher than bottomNav */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid white; /* Add white border */
+}
+
+.floatButton:hover {
+    transform: translateX(-50%) scale(1.05);
+    box-shadow: 0 6px 20px rgba(236, 72, 153, 0.5);
+}
+
+.floatButton i {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5;
+}
+
+/* Space in bottom nav for FAB */
+.fabPlaceholder {
+    visibility: hidden; /* Just takes up space */
+    flex: 1.2; /* Make central space slightly wider for FAB */
+}
+
+/* Responsive adjustments */
+@media (max-width: 360px) {
+    .headerTitle {
+        font-size: 22px;
+    }
+    
+    .headerSubtitle {
+        font-size: 13px;
+    }
+    
+    .tenderMeta {
+        flex-direction: column;
+        gap: 3px;
+    }
+    
+    .tabButton {
+        font-size: 11px;
+    }
+}
+
+/* Icon fallback styles for when Lucide fails to load */
+.icon-fallback {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-align: center;
+}
+
+/* Fix for Lucide icons */
+.container [data-lucide] {
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+/* Loading state for async content */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    color: var(--text-light);
+}
+
+.loading-spinner {
+    width: 30px;
+    height: 30px;
+    border: 3px solid rgba(236, 72, 153, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--secondary);
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Empty state styling */
+.empty-state {
+    text-align: center;
+    padding: 30px 15px;
+    color: var(--text-light);
+}
+
+.empty-state i {
+    width: 40px;
+    height: 40px;
+    stroke-width: 1.5;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.empty-state-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-dark);
+}
+
+.empty-state-desc {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Back button styling */
+.backButton {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.backButton i {
+    color: white;
+    width: 20px;
+    height: 20px;
+}
+
+/* Add extra bottom padding to ensure content isn't hidden behind the bottom nav */
+.bottomPadding {
+    padding-bottom: 100px; /* Ensure enough space at bottom */
+}
+
+/* Add white border to FAB to match home page */
+.floatButton {
+    border: 3px solid white;
+}
+
+/* Fix for body background to ensure it's white */
+/* Remove the problematic global selector at the end */
+/* Instead of:
+:global(body) {
+    background-color: var(--background);
+}
+*/

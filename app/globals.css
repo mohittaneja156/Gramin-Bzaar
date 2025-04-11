@@ -1,8 +1,25 @@
 @import "tailwindcss";
 
 :root {
+  /* Base theme variables */
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Gramin Bazaar theme variables */
+  --primary: #14B8A6; /* Teal */
+  --primary-light: #5EEAD4; /* Lighter Teal */
+  --secondary: #EC4899; /* Pink */
+  --accent: #0F766E; /* Darker Teal */
+  --light-bg: #f0fdfa; /* Very Light Teal */
+  --text-dark: #1f2937; /* Dark Gray */
+  --text-light: #6b7280; /* Medium Gray */
+  --card-bg: #ffffff;
+  --warning: #F59E0B; /* Amber */
+  --info: #3B82F6; /* Blue */
+  --danger: #ef4444; /* Red */
+  --success: #10b981; /* Green */
+  --purple: #8b5cf6; /* Purple */
+  --purple-light: #c4b5fd; /* Light Purple */
 }
 
 @theme inline {
@@ -23,4 +40,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Global fix for Lucide icons */
+[data-lucide] {
+  display: inline-block;
+  vertical-align: middle;
 }

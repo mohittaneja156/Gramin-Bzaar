@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>अवसर सेतु - ग्रामीण बाज़ार कनेक्ट</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* --- CSS Variables for Theming (from reference) --- */
+        :root {
+            --primary: #14B8A6; /* Teal */
+            --primary-light: #5EEAD4; /* Lighter Teal */
+            --secondary: #EC4899; /* Pink */
+            --accent: #0F766E; /* Darker Teal */
+            --light-bg: #f0fdfa; /* Very Light Teal */
+            --text-dark: #1f2937; /* Dark Gray */
+            --text-light: #6b7280; /* Medium Gray */
+            --card-bg: #ffffff;
+            --warning: #F59E0B; /* Amber */
+            --info: #3B82F6; /* Blue */
+            --danger: #ef4444; /* Red */
+            --success: #10b981; /* Green */
+            --purple: #8b5cf6; /* Purple */
+            --purple-light: #c4b5fd; /* Light Purple */
+        }
+
+        /* --- Global Reset and Font (from reference) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+        }
+
+        /* --- Body Styling (from reference) --- */
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            padding-bottom: 80px; /* Space for bottom nav */
+        }
+
+        /* --- Main Container (from reference) --- */
+        .container {
+            max-width: 480px; /* Mobile-first constraint */
+            margin: 0 auto;
+            padding: 0 15px; /* Side padding */
+        }
+
+        /* --- Header Styling (Adapted for Avsar Setu) --- */
+        .header {
+            /* Using Pink/Secondary for Avsar Setu focus */
+            background: linear-gradient(135deg, var(--secondary), #f9a8d4);
+            color: white;
+            padding: 25px 20px;
+            border-radius: 0 0 30px 30px; /* Rounded bottom corners */
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+        .header-title i {
+             width: 28px;
+             height: 28px;
+             margin-right: 10px;
+             stroke-width: 2.5;
+        }
+
+        .header-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        /* --- Tab Navigation --- */
+        .tabs {
+            display: flex;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px 5px;
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-button i {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+
+        .tab-button.active {
+            color: var(--secondary); /* Pink for active tab */
+            font-weight: 600;
+            border-bottom-color: var(--secondary);
+        }
+        .tab-button:not(:last-child) {
+            border-right: 1px solid #eee; /* Separator */
+        }
+
+        /* --- Tab Content Area --- */
+        .tab-content {
+            display: none; /* Hide all content by default */
+            animation: fadeIn 0.5s ease; /* Add a fade-in effect */
+        }
+        .tab-content.active {
+            display: block; /* Show active content */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* --- Section Title (from reference, slightly adapted) --- */
+        .section-title {
+            color: var(--accent); /* Dark teal accent */
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .section-title i {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            stroke-width: 2.5;
+            color: var(--accent); /* Match text color */
+        }
+
+        /* --- Tender Card Styling (Adapted from Alert Card) --- */
+        .tender-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+            border-left: 5px solid var(--warning); /* Amber for tenders */
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .tender-icon-container {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--warning), #fbbf24); /* Amber gradient */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        .tender-icon-container i {
+            width: 30px;
+            height: 30px;
+            stroke-width: 2;
+        }
+
+        .tender-details {
+            flex: 1;
+        }
+
+        .tender-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .tender-meta {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px 15px; /* Row and column gap */
+        }
+        .tender-meta span {
+            display: flex;
+            align-items: center;
+        }
+        .tender-meta i {
+            width: 14px;
+            height: 14px;
+            margin-right: 4px;
+            stroke-width: 2;
+        }
+
+        .details-btn { /* Reusing from reference */
+            background: none;
+            border: 1px solid var(--accent);
+            color: var(--accent); /* Darker Teal */
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex; /* Use inline-flex */
+            align-items: center;
+            margin-top: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+        .details-btn:hover {
+             background-color: var(--accent);
+             color: white;
+        }
+
+        .details-btn i {
+            width: 14px;
+            height: 14px;
+            margin-left: 4px;
+            stroke-width: 2.5;
+        }
+
+        /* --- B2B Connection Card Styling (Adapted from Feature Card) --- */
+         .b2b-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+             border: 1px solid #eee;
+         }
+
+         .b2b-icon-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: white;
+            /* Blue for B2B */
+            background: linear-gradient(135deg, var(--info), #60a5fa);
+         }
+         .b2b-icon-container i {
+             width: 30px;
+             height: 30px;
+             stroke-width: 2;
+         }
+
+         .b2b-title {
+             font-size: 16px;
+             font-weight: 600;
+             margin-bottom: 5px;
+             color: var(--text-dark);
+         }
+
+         .b2b-desc {
+             font-size: 13px;
+             color: var(--text-light);
+             line-height: 1.4;
+             margin-bottom: 15px;
+         }
+
+        /* --- Resource Card Styling (Adapted from Highlight Card) --- */
+         .resource-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb; /* Light border */
+            cursor: pointer;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+            gap: 15px;
+        }
+        .resource-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .resource-icon-container {
+             width: 45px;
+             height: 45px;
+             border-radius: 10px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             flex-shrink: 0;
+             color: white;
+        }
+        /* Specific colors for resource types */
+        .resource-icon-container.docs { background: linear-gradient(135deg, var(--purple), var(--purple-light)); } /* Purple */
+        .resource-icon-container.gem { background: linear-gradient(135deg, var(--success), #34d399); } /* Green */
+        .resource-icon-container.kendra { background: linear-gradient(135deg, var(--info), #60a5fa); } /* Blue */
+        .resource-icon-container.bidding { background: linear-gradient(135deg, var(--secondary), #f9a8d4); } /* Pink */
+
+        .resource-icon-container i {
+             width: 24px;
+             height: 24px;
+             stroke-width: 2;
+        }
+
+        .resource-content {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-weight: 600; /* Bolder */
+            margin-bottom: 4px;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .resource-desc {
+            font-size: 12px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+        .resource-card .chevron-icon {
+             color: var(--text-light);
+             margin-left: auto;
+             width: 18px; height: 18px;
+        }
+
+        /* --- Simple Form Styling (Example for B2B Post) --- */
+        .form-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            background-color: #f9fafb;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .submit-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--secondary), #f9a8d4); /* Pink gradient */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(236, 72, 153, 0.3);
+        }
+        .submit-btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4);
+        }
+
+        /* --- Bottom Navigation Styling (from reference) --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 480px; /* Match container */
+            margin: 0 auto; /* Center nav on wider screens */
+            background: white;
+            display: flex;
+            height: 65px;
+            padding: 5px 0;
+            box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08);
+            border-top: 1px solid #f0f0f0;
+            z-index: 100;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 0;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            position: relative; /* Needed for potential notification dots */
+        }
+        .nav-item:hover {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            margin-bottom: 4px;
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+
+        .nav-item.active {
+             /* Use Pink to match header and FAB */
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .nav-item.active .nav-icon {
+            stroke-width: 2.5; /* Bolden active icon */
+        }
+
+        /* Placeholder for FAB alignment */
+        .nav-item.fab-placeholder {
+            flex: 1.2; /* Make central space slightly wider for FAB */
+        }
+
+        /* --- Floating Action Button Styling (from reference) --- */
+        .float-button {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary), #f9a8d4); /* Pink gradient */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4);
+            border: 3px solid white;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            z-index: 101;
+        }
+        .float-button:hover {
+            transform: translateX(-50%) scale(1.05);
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.5);
+        }
+        .float-button i {
+            width: 28px;
+            height: 28px;
+            stroke-width: 2.5;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <div class="header-title">
+                <i data-lucide="briefcase"></i>
+                <span>अवसर सेतु</span>
+            </div>
+            <div class="header-subtitle">
+                सरकारी और कॉर्पोरेट खरीद, B2B बाज़ार और सहायता तक पहुँचें।
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('tenders')">
+                <i data-lucide="file-text"></i>
+                <span>टेंडर खोजें</span>
+            </button>
+            <button class="tab-button" onclick="switchTab('b2b')">
+                <i data-lucide="users"></i>
+                <span>B2B कनेक्ट</span>
+            </button>
+            <button class="tab-button" onclick="switchTab('resources')">
+                <i data-lucide="book-open-check"></i>
+                <span>संसाधन/सहायता</span>
+            </button>
+        </div>
+
+        <div id="tab-tenders" class="tab-content active">
+            <h2 class="section-title">
+                 <i data-lucide="megaphone"></i>
+                 नवीनतम टेंडर सूचनाएं
+            </h2>
+
+             <div class="tender-card">
+                 <div class="tender-icon-container">
+                      <i data-lucide="file-text"></i>
+                 </div>
+                 <div class="tender-details">
+                      <div class="tender-title">जूट बैग के लिए GeM टेंडर</div>
+                      <div class="tender-meta">
+                            <span><i data-lucide="tag"></i>जूट उत्पाद</span>
+                            <span><i data-lucide="map-pin"></i>राज्य स्तरीय</span>
+                            <span><i data-lucide="calendar-clock"></i>अंतिम तिथि: 25 अप्रैल</span>
+                      </div>
+                      <button class="details-btn" onclick="viewTenderDetails('gem_jute_01')">
+                            विवरण देखें <i data-lucide="arrow-right"></i>
+                      </button>
+                 </div>
+             </div>
+
+             <div class="tender-card">
+                 <div class="tender-icon-container">
+                      <i data-lucide="shopping-bag"></i>
+                 </div>
+                 <div class="tender-details">
+                      <div class="tender-title">कॉर्पोरेट गिफ्टिंग हेतु हस्तशिल्प</div>
+                      <div class="tender-meta">
+                            <span><i data-lucide="tag"></i>हस्तशिल्प</span>
+                            <span><i data-lucide="building"></i>ABC कॉर्पोरेशन</span>
+                            <span><i data-lucide="map-pin"></i>राष्ट्रीय</span>
+                      </div>
+                      <button class="details-btn" onclick="viewTenderDetails('corp_craft_02')">
+                            विवरण देखें <i data-lucide="arrow-right"></i>
+                      </button>
+                 </div>
+             </div>
+
+             <div class="tender-card">
+                 <div class="tender-icon-container">
+                      <i data-lucide="file-text"></i>
+                 </div>
+                 <div class="tender-details">
+                      <div class="tender-title">स्कूल यूनिफार्म सिलाई टेंडर</div>
+                      <div class="tender-meta">
+                            <span><i data-lucide="tag"></i>परिधान</span>
+                            <span><i data-lucide="map-pin"></i>जिला स्तरीय (जयपुर)</span>
+                            <span><i data-lucide="calendar-clock"></i>अंतिम तिथि: 30 अप्रैल</span>
+                      </div>
+                      <button class="details-btn" onclick="viewTenderDetails('gem_uniform_03')">
+                            विवरण देखें <i data-lucide="arrow-right"></i>
+                      </button>
+                 </div>
+             </div>
+             </div>
+
+        <div id="tab-b2b" class="tab-content">
+             <h2 class="section-title">
+                 <i data-lucide="handshake"></i>
+                 व्यापारिक संपर्क
+            </h2>
+
+             <div class="form-section">
+                 <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 15px; color: var(--accent); display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="plus-circle"></i> अपनी खरीद आवश्यकता पोस्ट करें
+                 </h3>
+                 <div class="form-group">
+                     <label for="product_category">उत्पाद श्रेणी</label>
+                     <select id="product_category" name="product_category">
+                         <option value="">चुनें...</option>
+                         <option value="handicrafts">हस्तशिल्प</option>
+                         <option value="textiles">कपड़ा</option>
+                         <option value="food">खाद्य उत्पाद</option>
+                         <option value="other">अन्य</option>
+                     </select>
+                 </div>
+                  <div class="form-group">
+                     <label for="quantity">आवश्यक मात्रा</label>
+                     <input type="text" id="quantity" name="quantity" placeholder="जैसे: 100 पीस, 50 किलो">
+                 </div>
+                 <div class="form-group">
+                     <label for="description">विवरण / विशेष विवरण</label>
+                     <textarea id="description" name="description" placeholder="उत्पाद का संक्षिप्त विवरण दें..."></textarea>
+                 </div>
+                 <button type="submit" class="submit-btn" onclick="submitB2BRequirement()">आवश्यकता जमा करें</button>
+            </div>
+
+             <h3 class="section-title" style="margin-top: 30px;">
+                 <i data-lucide="search"></i>
+                 संभावित खरीदार / आपूर्तिकर्ता खोजें
+             </h3>
+
+             <div class="b2b-card" onclick="viewProfile('buyer_delhi_boutique')">
+                  <div class="b2b-icon-container" style="background: linear-gradient(135deg, var(--info), #60a5fa);">
+                      <i data-lucide="building-2"></i>
+                  </div>
+                  <div class="b2b-title">दिल्ली बुटीक (खरीदार)</div>
+                  <div class="b2b-desc">उच्च गुणवत्ता वाले हस्तशिल्प और सजावटी सामान की तलाश में।</div>
+                  <button class="details-btn">प्रोफ़ाइल देखें <i data-lucide="arrow-right"></i></button>
+             </div>
+
+             <div class="b2b-card" onclick="viewProfile('supplier_asha_shg')">
+                  <div class="b2b-icon-container" style="background: linear-gradient(135deg, var(--success), #34d399);">
+                      <i data-lucide="store"></i>
+                  </div>
+                  <div class="b2b-title">आशा SHG (आपूर्तिकर्ता)</div>
+                  <div class="b2b-desc">हाथ से बुनी टोकरियाँ और जूट उत्पाद बनाने में विशेषज्ञता।</div>
+                  <button class="details-btn">प्रोफ़ाइल देखें <i data-lucide="arrow-right"></i></button>
+             </div>
+             </div>
+
+        <div id="tab-resources" class="tab-content">
+             <h2 class="section-title">
+                 <i data-lucide="life-buoy"></i>
+                 दस्तावेज़ और सहायता
+            </h2>
+
+              <div class="resource-card" onclick="navigateTo('doc_checklist')">
+                   <div class="resource-icon-container docs">
+                       <i data-lucide="list-checks"></i>
+                   </div>
+                   <div class="resource-content">
+                       <div class="resource-title">ज़रूरी दस्तावेज़ चेकलिस्ट</div>
+                       <div class="resource-desc">GeM और कॉर्पोरेट सप्लाई के लिए आवश्यक दस्तावेज़ों की सूची।</div>
+                   </div>
+                   <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+
+              <div class="resource-card" onclick="navigateTo('gem_guide')">
+                   <div class="resource-icon-container gem">
+                       <i data-lucide="file-text"></i>
+                   </div>
+                   <div class="resource-content">
+                       <div class="resource-title">GeM पंजीकरण गाइड</div>
+                       <div class="resource-desc">GeM पोर्टल पर पंजीकरण करने की सरल स्टेप-बाय-स्टेप प्रक्रिया।</div>
+                   </div>
+                   <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+
+             <div class="resource-card" onclick="navigateTo('kendra_locator')">
+                   <div class="resource-icon-container kendra">
+                       <i data-lucide="map-pin"></i>
+                   </div>
+                   <div class="resource-content">
+                       <div class="resource-title">नज़दीकी ग्रामीण सहायता केंद्र</div>
+                       <div class="resource-desc">पंजीकरण, दस्तावेज़ीकरण और बोली लगाने में सीधी सहायता प्राप्त करें।</div>
+                   </div>
+                   <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+
+              <div class="resource-card" onclick="navigateTo('collective_bidding')">
+                   <div class="resource-icon-container bidding">
+                       <i data-lucide="users-round"></i>
+                   </div>
+                   <div class="resource-content">
+                       <div class="resource-title">सामूहिक बोली सहायता</div>
+                       <div class="resource-desc">बड़े अनुबंधों के लिए अन्य SHGs के साथ जुड़ें और मिलकर बोली लगाएं।</div>
+                   </div>
+                  <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+             </div>
+
+    </div> <div class="float-button" onclick="openFABAction()">
+        <i data-lucide="plus"></i>
+    </div>
+
+     <div class="bottom-nav">
+        <a href="#home" class="nav-item" onclick="navigateApp('home', this, event)">
+            <i data-lucide="home" class="nav-icon"></i>
+            <div>होम</div>
+        </a>
+         <a href="#avsar" class="nav-item active" onclick="navigateApp('avsar', this, event)">
+            <i data-lucide="briefcase" class="nav-icon"></i>
+            <div>अवसर सेतु</div>
+        </a>
+        <div class="nav-item fab-placeholder"></div> <a href="#kaushal" class="nav-item" onclick="navigateApp('kaushal', this, event)">
+             <i data-lucide="book-open-text" class="nav-icon"></i>
+            <div>कौशल केंद्र</div>
+        </a>
+        <a href="#logistics" class="nav-item" onclick="navigateApp('logistics', this, event)">
+            <i data-lucide="truck" class="nav-icon"></i>
+            <div>सुगम लॉजिस्टिक्स</div>
+        </a>
+    </div>
+
+    <script>
+        try {
+            lucide.createIcons();
+            console.log("Lucide icons initialized for Avsar Setu.");
+        } catch (error) {
+            console.error("Error initializing Lucide icons:", error);
+        }
+
+        // --- Tab Switching Logic ---
+        function switchTab(tabId) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Deactivate all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Show the selected tab content
+            const selectedContent = document.getElementById('tab-' + tabId);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+            }
+
+            // Activate the clicked tab button
+            const selectedButton = document.querySelector(`.tab-button[onclick="switchTab('${tabId}')"]`);
+             if (selectedButton) {
+                 selectedButton.classList.add('active');
+             }
+             console.log(`Switched to tab: ${tabId}`);
+        }
+
+        // --- Placeholder Functions ---
+        function navigateTo(section) {
+            alert(`(Placeholder) Navigating to resource/section: ${section}`);
+            console.log(`Navigating to: ${section}`);
+        }
+
+         function viewTenderDetails(tenderId) {
+            alert(`(Placeholder) Viewing details for Tender ID: ${tenderId}`);
+            console.log(`Viewing tender: ${tenderId}`);
+         }
+
+         function viewProfile(profileId) {
+             alert(`(Placeholder) Viewing B2B Profile ID: ${profileId}`);
+             console.log(`Viewing profile: ${profileId}`);
+         }
+
+         function submitB2BRequirement() {
+             alert('(Placeholder) Submitting B2B Requirement...');
+             console.log('Submit B2B Requirement clicked');
+             // Add form validation and submission logic here in a real app
+         }
+
+         function openFABAction() {
+             // Example: Link FAB to posting a B2B Requirement or another primary action
+             alert('(Placeholder) Opening action from FAB (e.g., Post B2B Need)...');
+             console.log('FAB clicked - potential action: Post B2B Requirement');
+             // Maybe switch to B2B tab and focus the form?
+             switchTab('b2b');
+             // You could scroll to the form section here:
+             // document.querySelector('.form-section')?.scrollIntoView({ behavior: 'smooth' });
+         }
+
+         function navigateApp(pageName, element, event) {
+              event.preventDefault(); // Prevent default '#' link behavior
+
+              // Remove active class from all nav items
+              document.querySelectorAll('.bottom-nav a.nav-item').forEach(item => {
+                  item.classList.remove('active');
+              });
+
+              // Add active class to the clicked item (if element is provided)
+              if(element) {
+                 element.classList.add('active');
+              }
+
+             // In a real multi-page app/SPA, this would trigger navigation
+             alert(`(Placeholder) Navigating to main App Section: ${pageName}`);
+             console.log(`Navigating to App Section: ${pageName}`);
+
+             // If this were a single-page app changing content, you'd load the content for 'pageName' here.
+             // For this example, we are *already on* the Avsar Setu page,
+             // so clicking its own nav button just ensures it stays visually active.
+         }
+
+        // Ensure the first tab is shown on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            switchTab('tenders'); // Activate the 'tenders' tab by default
+        });
+
+    </script>
+
+</body>
+</html>
