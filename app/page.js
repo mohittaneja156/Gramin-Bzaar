@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
 import { useRouter } from 'next/navigation'; // Add router import
@@ -8,18 +8,35 @@ import { useRouter } from 'next/navigation'; // Add router import
 export default function Home() {
   const [showSearch, setShowSearch] = useState(false);
   const router = useRouter(); // Initialize router
+  const lucideLoaded = useRef(false);
   
-  useEffect(() => {
-    // Initialize Lucide icons after component mounts
+  // Function to initialize Lucide icons
+  const initializeLucideIcons = () => {
     try {
       if (typeof window !== 'undefined' && window.lucide) {
         window.lucide.createIcons();
         console.log("Lucide icons initialized.");
+        lucideLoaded.current = true;
       }
     } catch (error) {
       console.error("Error initializing Lucide icons:", error);
     }
-
+  };
+  
+  useEffect(() => {
+    // Initialize Lucide icons after component mounts
+    initializeLucideIcons();
+    
+    // Set up a retry mechanism
+    const iconCheckInterval = setInterval(() => {
+      if (!lucideLoaded.current) {
+        console.log("Retrying Lucide icon initialization...");
+        initializeLucideIcons();
+      } else {
+        clearInterval(iconCheckInterval);
+      }
+    }, 500);
+    
     // Add event listeners for detail buttons and highlight cards
     document
       .querySelectorAll(".details-btn, .highlight-card")
@@ -37,6 +54,7 @@ export default function Home() {
 
     // Cleanup function to remove event listeners when component unmounts
     return () => {
+      clearInterval(iconCheckInterval);
       document
         .querySelectorAll(".details-btn, .highlight-card")
         .forEach((el) => {
@@ -99,6 +117,13 @@ export default function Home() {
     element.classList.add("active");
   };
 
+  // Add this function to handle script load event
+  const handleScriptLoad = () => {
+    console.log("Lucide script loaded");
+    // Initialize icons after script is loaded
+    setTimeout(initializeLucideIcons, 100);
+  };
+
   return (
     <>
       <Head>
@@ -113,7 +138,11 @@ export default function Home() {
         />
       </Head>
 
-      <Script src="https://unpkg.com/lucide@latest" strategy="afterInteractive" />
+      <Script 
+        src="https://unpkg.com/lucide@latest" 
+        strategy="afterInteractive" 
+        onLoad={handleScriptLoad}
+      />
 
       <style jsx global>{`
         /* --- CSS Variables for Theming --- */
