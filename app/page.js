@@ -695,7 +695,7 @@ export default function Home() {
                 <i data-lucide="search"></i>
               </button>
               <div className="avatar" onClick={() => router.push('/profile')}>
-                <i data-lucide="user"></i>
+                <i data-lucide="user-round" style={{ color: 'var(--primary)' }}></i>
               </div>
             </div>
           </div>
@@ -850,7 +850,7 @@ export default function Home() {
       </div>
 
       <div className="float-button" onClick={addProduct}>
-        <i data-lucide="plus"></i>
+        <i data-lucide="bot"></i>
       </div>
 
       {/* Bottom Navigation */}
