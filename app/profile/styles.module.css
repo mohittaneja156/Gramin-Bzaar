@@ -1,0 +1,397 @@
+/* --- CSS Variables for Theming (Using Teal as primary for Profile) --- */
+.container {
+  --primary: #14B8A6; /* Teal */
+  --primary-light: #5EEAD4; /* Lighter Teal */
+  --secondary: #EC4899; /* Pink */
+  --accent: #0F766E; /* Darker Teal */
+  --light-bg: #f0fdfa; /* Very Light Teal */
+  --text-dark: #1f2937; /* Dark Gray */
+  --text-light: #6b7280; /* Medium Gray */
+  --card-bg: #ffffff;
+  --warning: #F59E0B; /* Amber */
+  --info: #3B82F6; /* Blue */
+  --danger: #ef4444; /* Red */
+  --success: #10b981; /* Green */
+  --purple: #8b5cf6; /* Purple */
+  
+  max-width: 480px; /* Mobile-first constraint */
+  margin: 0 auto;
+  padding: 0 15px; /* Side padding */
+  font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+  background-color: white; /* Set background to white */
+  min-height: 100vh; /* Ensure full height */
+}
+
+/* --- Header Styling (Adapted for Profile - Teal Theme) --- */
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  padding: 20px 20px 65px 20px; /* Extra padding at bottom for overlap */
+  border-radius: 0 0 35px 35px;
+  margin-bottom: -45px; /* Negative margin to pull summary card up */
+  box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3); /* Teal shadow */
+  position: relative; /* Needed for z-index */
+  z-index: 1;
+}
+
+.headerTitle {
+  font-size: 20px; /* Slightly smaller for profile */
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center title */
+  position: relative; /* For positioning the back button */
+  width: 100%;
+}
+
+.headerTitle svg {
+  margin-right: 8px;
+}
+
+.backButton {
+  position: absolute;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Profile Summary Card --- */
+.profileSummary {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 0 10px 25px 10px; /* Overlaps header slightly */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative; /* Needed for z-index */
+  z-index: 2;
+}
+
+.profileAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary)); /* Teal gradient */
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 3px solid white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Use background-image for real photo */
+}
+
+.profileName {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 3px;
+}
+
+.profileBusinessName {
+  font-size: 14px;
+  color: var(--primary); /* Teal accent */
+  font-weight: 500;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.editProfileBtn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--light-bg);
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--accent);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.editProfileBtn:hover {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+/* --- Info Card Styling (for Personal/Business Details) --- */
+.infoCard {
+  background: var(--card-bg);
+  border-radius: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  overflow: hidden; /* Ensures border-radius applies to children */
+}
+
+.cardHeader {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardEditBtn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.infoList {
+  padding: 10px 15px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+  gap: 12px;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.infoItem:last-child {
+  border-bottom: none;
+}
+
+.infoItem svg {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.infoLabel {
+  color: var(--text-light);
+  min-width: 80px; /* Align values */
+  flex-shrink: 0;
+}
+
+.infoValue {
+  color: var(--text-dark);
+  font-weight: 500;
+  word-break: break-word; /* Prevent long text overflow */
+}
+
+.infoValue.link {
+  color: var(--info); /* Blue for links */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* --- Quick Actions Grid --- */
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.actionCard {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 18px 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.actionCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.actionCard svg {
+  color: var(--primary); /* Teal icons */
+}
+
+.actionCard span {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.3;
+}
+
+/* --- Settings/Help List Item Styling --- */
+.settingItem, .helpItem {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 15px;
+}
+
+.settingItem:last-child, .helpItem:last-child {
+  border-bottom: none;
+}
+
+.settingItem:hover, .helpItem:hover {
+  background-color: #f7f7f7;
+}
+
+.settingItem svg, .helpItem svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.settingItem span, .helpItem span {
+  flex-grow: 1;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.chevronIcon {
+  color: var(--text-light);
+  margin-left: auto;
+}
+
+/* --- Logout Button --- */
+.logoutBtn {
+  display: flex;
+  width: 100%;
+  padding: 12px 20px;
+  background-color: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 25px;
+  margin-bottom: 80px; /* Space for bottom nav */
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logoutBtn:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* --- Bottom Navigation Styling (Active state for Profile - Teal) --- */
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background: white;
+  display: flex;
+  height: 65px;
+  padding: 5px 0;
+  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #f0f0f0;
+  z-index: 100;
+}
+
+/* Remove the global selectors that were causing the error */
+
+.navItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.navItem:hover {
+  color: var(--primary);
+}
+
+.navIcon {
+  margin-bottom: 4px;
+}
+
+.navItem.active {
+  color: var(--primary); /* Teal for active Profile */
+  font-weight: 600;
+}
+
+.navItem.active .navIcon {
+  stroke-width: 2.5;
+}
+
+.navItemFabPlaceholder {
+  flex: 1.2;
+}
+
+/* --- Floating Action Button Styling --- */
+.floatButton {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--secondary), #f9a8d4); /* Pink gradient */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4);
+  border: 3px solid white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 101;
+}
+
+.floatButton:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 8px 20px rgba(236, 72, 153, 0.5);
+}

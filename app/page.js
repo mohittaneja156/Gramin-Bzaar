@@ -694,7 +694,7 @@ export default function Home() {
               <button className="icon-button search-toggle" onClick={toggleSearch}>
                 <i data-lucide="search"></i>
               </button>
-              <div className="avatar">
+              <div className="avatar" onClick={() => router.push('/profile')}>
                 <i data-lucide="user"></i>
               </div>
             </div>

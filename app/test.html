@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>कौशल केंद्र - ग्रामीण बाज़ार कनेक्ट</title>
+    <title>प्रोफ़ाइल - ग्रामीण बाज़ार कनेक्ट</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* --- CSS Variables for Theming (Reusing from reference) --- */
+        /* --- CSS Variables for Theming (Using Teal as primary for Profile) --- */
         :root {
             --primary: #14B8A6; /* Teal */
             --primary-light: #5EEAD4; /* Lighter Teal */
@@ -23,426 +23,264 @@
             --info: #3B82F6; /* Blue */
             --danger: #ef4444; /* Red */
             --success: #10b981; /* Green */
-            /* Adding Purple for Kaushal Kendra theme */
-            --purple: #8b5cf6;
-            --purple-light: #c4b5fd;
-            --purple-dark: #6d28d9;
+            --purple: #8b5cf6; /* Purple */
         }
 
         /* --- Global Reset and Font (from reference) --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
 
         /* --- Body Styling (from reference) --- */
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            padding-bottom: 80px; /* Space for bottom nav */
-        }
+        body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 80px; }
 
         /* --- Main Container (from reference) --- */
-        .container {
-            max-width: 480px; /* Mobile-first constraint */
-            margin: 0 auto;
-            padding: 0 15px; /* Side padding */
-        }
+        .container { max-width: 480px; margin: 0 auto; padding: 0 15px; }
 
-        /* --- Header Styling (Adapted for Kaushal Kendra - Purple Theme) --- */
+        /* --- Header Styling (Adapted for Profile - Teal Theme) --- */
         .header {
-            background: linear-gradient(135deg, var(--purple), var(--purple-light));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            padding: 25px 20px;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3); /* Purple shadow */
+            padding: 20px 20px 65px 20px; /* Extra padding at bottom for overlap */
+            border-radius: 0 0 35px 35px;
+            margin-bottom: -45px; /* Negative margin to pull summary card up */
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3); /* Teal shadow */
+            position: relative; /* Needed for z-index */
+            z-index: 1;
         }
-
         .header-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-        }
-        .header-title i {
-             width: 28px;
-             height: 28px;
-             margin-right: 10px;
-             stroke-width: 2.5;
-        }
-
-        .header-subtitle {
-            font-size: 14px;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-
-        /* --- Tab Navigation (Adapted - Purple Active State) --- */
-        .tabs {
-            display: flex;
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-            overflow: hidden;
-            margin-bottom: 25px;
-        }
-
-        .tab-button {
-            flex: 1;
-            padding: 12px 5px;
-            background: none;
-            border: none;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            border-bottom: 3px solid transparent;
-            text-align: center; /* Ensure text centers if it wraps */
-        }
-        .tab-button i {
-            width: 20px;
-            height: 20px;
-            stroke-width: 2;
-        }
-
-        .tab-button.active {
-            color: var(--purple); /* Purple for active tab */
-            font-weight: 600;
-            border-bottom-color: var(--purple);
-        }
-        .tab-button:not(:last-child) {
-            border-right: 1px solid #eee; /* Separator */
-        }
-
-        /* --- Tab Content Area (from reference) --- */
-        .tab-content {
-            display: none; /* Hide all content by default */
-            animation: fadeIn 0.5s ease; /* Add a fade-in effect */
-        }
-        .tab-content.active {
-            display: block; /* Show active content */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Section Title (from reference, adapted color) --- */
-        .section-title {
-            color: var(--purple-dark); /* Dark Purple accent */
-            margin-bottom: 15px;
-            font-size: 18px;
+            font-size: 20px; /* Slightly smaller for profile */
             font-weight: 600;
             display: flex;
             align-items: center;
+            justify-content: center; /* Center title */
         }
-        .section-title i {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-            stroke-width: 2.5;
-            color: var(--purple-dark); /* Match text color */
-        }
+        .header-title i { width: 22px; height: 22px; margin-right: 8px; stroke-width: 2.5; }
 
-         /* --- Learning Module Card Styling --- */
-        .learning-grid {
-             display: grid;
-             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Responsive grid */
-             gap: 15px;
-             margin-bottom: 25px;
-         }
-
-        .learning-card {
+        /* --- Profile Summary Card --- */
+        .profile-summary {
             background: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
-            overflow: hidden;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 0 10px 25px 10px; /* Overlaps header slightly */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            cursor: pointer;
-        }
-        .learning-card:hover {
-             transform: translateY(-3px);
-             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+            align-items: center;
+            text-align: center;
+            position: relative; /* Needed for z-index */
+            z-index: 2;
         }
 
-        .learning-card-thumbnail {
-            height: 100px;
-            background: linear-gradient(135deg, var(--purple-light), var(--purple)); /* Gradient placeholder */
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary)); /* Teal gradient */
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            /* Use background-image for real photo */
         }
-        .learning-card-thumbnail i { /* Icon for video/audio */
-            width: 40px;
-            height: 40px;
-            stroke-width: 1.5;
-        }
+        .profile-avatar i { width: 40px; height: 40px; stroke-width: 1.5; }
 
-        .learning-card-content {
-            padding: 12px;
-            flex-grow: 1; /* Allows content to fill space */
-             display: flex;
-             flex-direction: column;
-        }
-
-        .learning-card-title {
-            font-size: 14px;
-            font-weight: 600;
+        .profile-name {
+            font-size: 20px;
+            font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 5px;
-            line-height: 1.3; /* Allow wrapping */
-            min-height: 36px; /* Reserve space for 2 lines approx */
+            margin-bottom: 3px;
         }
 
-        .learning-card-meta {
-            font-size: 11px;
-            color: var(--text-light);
-            margin-top: auto; /* Pushes meta to bottom */
-            padding-top: 8px;
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-        }
-         .learning-card-meta span {
-              display: flex;
-              align-items: center;
-              gap: 4px;
-         }
-         .learning-card-meta i {
-             width: 14px; height: 14px; stroke-width: 2;
-         }
-
-         /* --- Community Forum Post Card --- */
-         .forum-post-card {
-             background: var(--card-bg);
-             border-radius: 15px;
-             padding: 15px;
-             margin-bottom: 15px;
-             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-             border-left: 4px solid var(--info); /* Blue accent for community */
-             display: flex;
-             flex-direction: column;
-             gap: 10px;
-         }
-
-         .forum-post-header {
-             display: flex;
-             align-items: center;
-             gap: 10px;
-         }
-
-         .forum-avatar {
-             width: 35px;
-             height: 35px;
-             border-radius: 50%;
-             background: var(--purple-light); /* Placeholder color */
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             color: var(--purple-dark);
-             font-weight: 600;
-             font-size: 14px;
-             flex-shrink: 0;
-         }
-         .forum-avatar i { width: 20px; height: 20px; }
-
-         .forum-user-info {
-             font-size: 13px;
-         }
-         .forum-user-name {
-             font-weight: 600;
-             color: var(--text-dark);
-         }
-         .forum-post-time {
-             color: var(--text-light);
-             font-size: 11px;
-         }
-
-         .forum-post-body {
-             font-size: 14px;
-             line-height: 1.5;
-             color: var(--text-dark);
-         }
-
-         .forum-post-actions {
-             display: flex;
-             gap: 15px;
-             padding-top: 10px;
-             border-top: 1px solid #eee;
-             margin-top: 10px;
-         }
-
-         .action-btn {
-             background: none;
-             border: none;
-             color: var(--text-light);
-             font-size: 12px;
-             font-weight: 500;
-             cursor: pointer;
-             display: flex;
-             align-items: center;
-             gap: 4px;
-             transition: color 0.2s ease;
-         }
-         .action-btn:hover {
-              color: var(--purple);
-         }
-         .action-btn i {
-             width: 16px; height: 16px; stroke-width: 2;
-         }
-
-        /* --- Ask Question Button/Section --- */
-        .ask-question-btn {
-             display: block; /* Full width */
-             width: 100%;
-             padding: 12px 20px;
-             /* Purple gradient button */
-             background: linear-gradient(135deg, var(--purple), var(--purple-light));
-             color: white;
-             border: none;
-             border-radius: 10px;
-             font-size: 16px;
-             font-weight: 600;
-             text-align: center;
-             cursor: pointer;
-             transition: all 0.3s ease;
-             box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
-             margin-bottom: 20px;
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             gap: 8px;
-        }
-        .ask-question-btn:hover {
-            opacity: 0.9;
-            box-shadow: 0 6px 15px rgba(139, 92, 246, 0.4);
-        }
-         .ask-question-btn i { width: 18px; height: 18px; stroke-width: 2.5; }
-
-
-        /* --- Mentor Card Styling --- */
-        .mentor-card {
-             background: var(--card-bg);
-             border-radius: 15px;
-             padding: 15px;
-             margin-bottom: 15px;
-             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-             display: flex;
-             align-items: center;
-             gap: 15px;
-             border: 1px solid #eee;
-         }
-
-         .mentor-photo {
-             width: 60px;
-             height: 60px;
-             border-radius: 50%;
-             background: var(--primary-light); /* Teal placeholder */
-             flex-shrink: 0;
-             display: flex; justify-content: center; align-items: center;
-             /* In real app, use background-image */
-             overflow: hidden;
-         }
-          .mentor-photo i { width: 30px; height: 30px; color: var(--accent); }
-
-
-         .mentor-details {
-             flex-grow: 1;
-         }
-
-         .mentor-name {
-             font-size: 16px;
-             font-weight: 600;
-             color: var(--text-dark);
-             margin-bottom: 3px;
-         }
-
-         .mentor-expertise {
-             font-size: 12px;
-             color: var(--primary); /* Teal accent */
-             font-weight: 500;
-             margin-bottom: 8px;
-              display: flex; align-items: center; gap: 5px;
-         }
-          .mentor-expertise i { width: 14px; height: 14px; stroke-width: 2.5; }
-
-         .connect-btn { /* Reusing details-btn style, but with primary color */
-            background: none;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            font-size: 12px;
+        .profile-business-name {
+            font-size: 14px;
+            color: var(--primary); /* Teal accent */
             font-weight: 500;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            padding: 5px 10px;
-            border-radius: 20px;
-            transition: all 0.2s ease;
-         }
-          .connect-btn:hover {
-              background-color: var(--primary);
-              color: white;
-          }
-         .connect-btn i {
-            width: 14px;
-            height: 14px;
-            margin-left: 4px;
-            stroke-width: 2.5;
-         }
+            margin-bottom: 15px;
+            display: flex; align-items: center; gap: 5px;
+        }
+         .profile-business-name i { width: 16px; height: 16px; stroke-width: 2; }
 
-        /* --- Resource Card Styling (Reusing from Avsar Setu for consistency) --- */
-         .resource-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 15px;
+        .edit-profile-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--light-bg);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e5e7eb;
+            justify-content: center;
             cursor: pointer;
-            transition: border-color 0.2s ease, transform 0.2s ease;
+            color: var(--accent);
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+             transition: all 0.2s ease;
+        }
+         .edit-profile-btn:hover {
+             background-color: var(--primary-light);
+             color: white;
+         }
+        .edit-profile-btn i { width: 18px; height: 18px; stroke-width: 2.5; }
+
+        /* --- Info Card Styling (for Personal/Business Details) --- */
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            overflow: hidden; /* Ensures border-radius applies to children */
+        }
+
+        .card-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            display: flex; align-items: center; gap: 8px;
+        }
+         .card-title i { width: 18px; height: 18px; stroke-width: 2.5; }
+
+         .card-edit-btn {
+             background: none; border: none; color: var(--primary); cursor: pointer;
+             padding: 5px; display: flex; align-items: center;
+         }
+         .card-edit-btn i { width: 16px; height: 16px; stroke-width: 2.5; }
+
+        .info-list {
+            padding: 10px 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 14px;
+            gap: 12px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+         .info-item:last-child { border-bottom: none; }
+
+         .info-item i {
+             width: 18px;
+             height: 18px;
+             color: var(--primary);
+             stroke-width: 2;
+             flex-shrink: 0;
+         }
+         .info-label {
+             color: var(--text-light);
+             min-width: 80px; /* Align values */
+             flex-shrink: 0;
+         }
+         .info-value {
+             color: var(--text-dark);
+             font-weight: 500;
+             word-break: break-word; /* Prevent long text overflow */
+         }
+         .info-value.link {
+             color: var(--info); /* Blue for links */
+             text-decoration: underline;
+             cursor: pointer;
+         }
+
+        /* --- Quick Actions Grid --- */
+         .action-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
             gap: 15px;
+            margin-bottom: 20px;
         }
-        .resource-card:hover {
-            border-color: var(--purple); /* Use purple on hover in this section */
-            transform: translateY(-2px);
+
+        .action-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 18px 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        .resource-icon-container {
-             width: 45px;
-             height: 45px;
-             border-radius: 10px;
+        .action-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+         .action-card i {
+             width: 28px;
+             height: 28px;
+             stroke-width: 2;
+             color: var(--primary); /* Teal icons */
+         }
+        .action-card span {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        /* --- Settings/Help List Item Styling --- */
+        .setting-item, .help-item {
              display: flex;
              align-items: center;
-             justify-content: center;
-             flex-shrink: 0;
-             color: white;
+             padding: 15px;
+             font-size: 14px;
+             cursor: pointer;
+             transition: background-color 0.2s ease;
+             border-bottom: 1px solid #f0f0f0;
+             gap: 15px;
+         }
+         .setting-item:last-child, .help-item:last-child { border-bottom: none; }
+         .setting-item:hover, .help-item:hover { background-color: #f7f7f7; }
+
+         .setting-item i, .help-item i {
+             width: 20px; height: 20px; color: var(--accent); stroke-width: 2; flex-shrink: 0;
+         }
+         .setting-item span, .help-item span {
+             flex-grow: 1; color: var(--text-dark); font-weight: 500;
+         }
+         .setting-item .chevron-icon, .help-item .chevron-icon {
+             width: 18px; height: 18px; color: var(--text-light); stroke-width: 2.5; margin-left: auto;
+         }
+
+        /* --- Logout Button --- */
+        .logout-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            background-color: transparent;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 25px;
+             display: flex; align-items: center; justify-content: center; gap: 8px;
         }
-        /* Specific colors for resource types */
-        .resource-icon-container.kendra { background: linear-gradient(135deg, var(--info), #60a5fa); } /* Blue */
-        .resource-icon-container.mentor-req { background: linear-gradient(135deg, var(--success), #34d399); } /* Green */
-
-        .resource-icon-container i { width: 24px; height: 24px; stroke-width: 2; }
-        .resource-content { flex: 1; }
-        .resource-title { font-weight: 600; margin-bottom: 4px; font-size: 15px; color: var(--text-dark); }
-        .resource-desc { font-size: 12px; color: var(--text-light); line-height: 1.4; }
-        .resource-card .chevron-icon { color: var(--text-light); margin-left: auto; width: 18px; height: 18px; }
+        .logout-btn:hover {
+            background-color: var(--danger);
+            color: white;
+        }
+        .logout-btn i { width: 18px; height: 18px; stroke-width: 2.5; }
 
 
-        /* --- Bottom Navigation Styling (Adapted Active State - Purple) --- */
+        /* --- Bottom Navigation Styling (Active state for Profile - Teal) --- */
         .bottom-nav {
             position: fixed; bottom: 0; left: 0; right: 0;
             max-width: 480px; margin: 0 auto;
@@ -459,7 +297,7 @@
         .nav-icon { margin-bottom: 4px; width: 24px; height: 24px; stroke-width: 2; }
 
         .nav-item.active {
-            color: var(--purple); /* Purple for active Kaushal Kendra */
+            color: var(--primary); /* Teal for active Profile */
             font-weight: 600;
         }
         .nav-item.active .nav-icon { stroke-width: 2.5; }
@@ -486,193 +324,153 @@
 
         <div class="header">
             <div class="header-title">
-                <i data-lucide="book-open-text"></i> <span>कौशल केंद्र</span>
-            </div>
-            <div class="header-subtitle">
-                सीखें ज़रूरी कौशल, पाएं सहायता, और अपने व्यवसाय को बढ़ाएं।
+                <i data-lucide="user-round"></i>
+                <span>मेरा प्रोफ़ाइल</span>
             </div>
         </div>
 
-        <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('learn')">
+        <div class="profile-summary">
+            <div class="profile-avatar">
+                <i data-lucide="user"></i> </div>
+            <div class="profile-name">राधा देवी</div>
+            <div class="profile-business-name">
+                <i data-lucide="store"></i>आशा SHG - टोकरी बुनाई यूनिट
+            </div>
+             <button class="edit-profile-btn" onclick="openEditProfile('summary')" title="प्रोफ़ाइल संपादित करें">
+                <i data-lucide="edit-2"></i>
+            </button>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">
+                <div class="card-title"><i data-lucide="user-circle"></i>व्यक्तिगत विवरण</div>
+                <button class="card-edit-btn" onclick="openEditProfile('personal')"><i data-lucide="edit-2"></i></button>
+            </div>
+            <div class="info-list">
+                 <div class="info-item">
+                      <i data-lucide="user"></i>
+                      <span class="info-label">पूरा नाम:</span>
+                      <span class="info-value">राधा देवी</span>
+                 </div>
+                <div class="info-item">
+                    <i data-lucide="phone"></i>
+                    <span class="info-label">फोन नंबर:</span>
+                    <span class="info-value">+91-98XXXXXX01</span>
+                </div>
+                <div class="info-item">
+                    <i data-lucide="map-pin"></i>
+                    <span class="info-label">स्थान:</span>
+                    <span class="info-value">रामपुर गाँव, राजस्थान</span>
+                </div>
+                 <div class="info-item">
+                    <i data-lucide="languages"></i>
+                    <span class="info-label">भाषा:</span>
+                    <span class="info-value">हिन्दी</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+             <div class="card-header">
+                <div class="card-title"><i data-lucide="briefcase"></i>व्यवसाय/SHG विवरण</div>
+                <button class="card-edit-btn" onclick="openEditProfile('business')"><i data-lucide="edit-2"></i></button>
+            </div>
+             <div class="info-list">
+                 <div class="info-item">
+                      <i data-lucide="store"></i>
+                      <span class="info-label">इकाई का नाम:</span>
+                      <span class="info-value">आशा SHG - टोकरी बुनाई यूनिट</span>
+                 </div>
+                 <div class="info-item">
+                      <i data-lucide="tag"></i>
+                      <span class="info-label">श्रेणी:</span>
+                      <span class="info-value">हस्तशिल्प, गृह सजावट</span>
+                 </div>
+                 <div class="info-item">
+                      <i data-lucide="file-text"></i>
+                      <span class="info-label">उद्यम नं.:</span>
+                      <span class="info-value">UDYAM-RJ-XX-XXXXXXX</span>
+                 </div>
+                  <div class="info-item">
+                      <i data-lucide="layout-list"></i>
+                      <span class="info-label">शोकेस:</span>
+                      <span class="info-value link" onclick="viewPublicShowcase()">पब्लिक प्रोफ़ाइल देखें</span>
+                 </div>
+            </div>
+        </div>
+
+        <div class="action-grid">
+            <div class="action-card" onclick="navigateToSection('showcase')">
+                <i data-lucide="layout-dashboard"></i>
+                <span>मेरा शोकेस</span>
+            </div>
+             <div class="action-card" onclick="navigateToSection('orders')">
+                <i data-lucide="receipt-text"></i>
+                <span>मेरे ऑर्डर्स</span>
+            </div>
+             <div class="action-card" onclick="navigateToSection('opportunities')">
+                <i data-lucide="megaphone"></i>
+                <span>मेरे अवसर</span>
+            </div>
+             <div class="action-card" onclick="navigateToSection('learning')">
                 <i data-lucide="graduation-cap"></i>
-                <span>सीखें</span>
-            </button>
-            <button class="tab-button" onclick="switchTab('community')">
-                <i data-lucide="message-square"></i>
-                <span>समुदाय</span>
-            </button>
-            <button class="tab-button" onclick="switchTab('support')">
-                <i data-lucide="life-buoy"></i>
-                <span>सहायता / मेंटर</span>
-            </button>
+                <span>मेरी सीख</span>
+            </div>
         </div>
 
-        <div id="tab-learn" class="tab-content active">
-            <h2 class="section-title">
-                 <i data-lucide="play-circle"></i>
-                 सीखने के मॉड्यूल
-            </h2>
-             <div class="learning-grid">
-                 <div class="learning-card" onclick="startLearning('photo_module')">
-                      <div class="learning-card-thumbnail">
-                          <i data-lucide="video"></i>
-                      </div>
-                      <div class="learning-card-content">
-                          <div class="learning-card-title">उत्पाद की अच्छी तस्वीरें लेना</div>
-                          <div class="learning-card-meta">
-                               <span><i data-lucide="video"></i>वीडियो</span>
-                               <span><i data-lucide="clock"></i>5 मि</span>
-                          </div>
-                      </div>
-                 </div>
-                  <div class="learning-card" onclick="startLearning('packaging_module')">
-                      <div class="learning-card-thumbnail" style="background: linear-gradient(135deg, var(--primary-light), var(--primary));">
-                          <i data-lucide="package"></i>
-                      </div>
-                      <div class="learning-card-content">
-                          <div class="learning-card-title">सुरक्षित और आकर्षक पैकेजिंग</div>
-                          <div class="learning-card-meta">
-                               <span><i data-lucide="file-text"></i>लेख</span>
-                               <span><i data-lucide="book-open"></i>7 मि पढ़ना</span>
-                          </div>
-                      </div>
-                 </div>
-                  <div class="learning-card" onclick="startLearning('digital_payment_module')">
-                      <div class="learning-card-thumbnail" style="background: linear-gradient(135deg, #fbbf24, var(--warning));">
-                          <i data-lucide="smartphone"></i>
-                      </div>
-                      <div class="learning-card-content">
-                          <div class="learning-card-title">डिजिटल पेमेंट कैसे लें?</div>
-                           <div class="learning-card-meta">
-                               <span><i data-lucide="mic"></i>ऑडियो</span>
-                               <span><i data-lucide="clock"></i>4 मि</span>
-                          </div>
-                      </div>
-                 </div>
-                  <div class="learning-card" onclick="startLearning('gem_nav_module')">
-                      <div class="learning-card-thumbnail" style="background: linear-gradient(135deg, var(--success), #34d399);">
-                          <i data-lucide="shopping-cart"></i>
-                      </div>
-                      <div class="learning-card-content">
-                          <div class="learning-card-title">GeM पोर्टल नेविगेशन</div>
-                           <div class="learning-card-meta">
-                               <span><i data-lucide="video"></i>वीडियो</span>
-                               <span><i data-lucide="clock"></i>8 मि</span>
-                          </div>
-                      </div>
-                 </div>
-                 </div>
+        <div class="info-card settings-card">
+             <div class="card-header">
+                 <div class="card-title"><i data-lucide="settings"></i>सेटिंग्स</div>
+            </div>
+             <div class="setting-item" onclick="openSetting('notifications')">
+                  <i data-lucide="bell"></i>
+                  <span>सूचनाएं (Notifications)</span>
+                  <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+             <div class="setting-item" onclick="openSetting('language')">
+                  <i data-lucide="languages"></i>
+                  <span>भाषा बदलें (Change Language)</span>
+                   <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+             <div class="setting-item" onclick="openSetting('security')">
+                  <i data-lucide="shield"></i>
+                  <span>सुरक्षा (Security)</span>
+                   <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+             <div class="setting-item" onclick="openSetting('privacy')">
+                  <i data-lucide="lock"></i>
+                  <span>गोपनीयता (Privacy)</span>
+                  <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
         </div>
 
-        <div id="tab-community" class="tab-content">
-             <h2 class="section-title">
-                 <i data-lucide="users"></i>
-                 साथी उद्यमियों से जुड़ें
-             </h2>
-
-              <button class="ask-question-btn" onclick="askQuestion()">
-                  <i data-lucide="plus-circle"></i> अपना सवाल पूछें
-              </button>
-
-              <div class="forum-post-card">
-                  <div class="forum-post-header">
-                      <div class="forum-avatar"><i data-lucide="user"></i></div>
-                      <div class="forum-user-info">
-                           <div class="forum-user-name">मीरा देवी</div>
-                           <div class="forum-post-time">2 घंटे पहले</div>
-                      </div>
-                  </div>
-                  <div class="forum-post-body">
-                      GeM पर रजिस्टर करने के लिए कौन कौन से दस्तावेज़ चाहिए? कोई मदद कर सकता है?
-                  </div>
-                  <div class="forum-post-actions">
-                      <button class="action-btn" onclick="replyToPost('post123')"><i data-lucide="message-square"></i> उत्तर दें (2)</button>
-                      <button class="action-btn" onclick="likePost('post123')"><i data-lucide="thumbs-up"></i> पसंद करें (5)</button>
-                  </div>
-              </div>
-
-               <div class="forum-post-card">
-                  <div class="forum-post-header">
-                      <div class="forum-avatar">सु</div>
-                      <div class="forum-user-info">
-                           <div class="forum-user-name">सुनीता पाटिल</div>
-                           <div class="forum-post-time">कल</div>
-                      </div>
-                  </div>
-                  <div class="forum-post-body">
-                      मिट्टी के बर्तनों को शिपिंग के लिए पैक करने का सबसे अच्छा तरीका क्या है ताकि वे टूटे नहीं?
-                  </div>
-                  <div class="forum-post-actions">
-                      <button class="action-btn" onclick="replyToPost('post124')"><i data-lucide="message-square"></i> उत्तर दें (4)</button>
-                      <button class="action-btn" onclick="likePost('post124')"><i data-lucide="thumbs-up"></i> पसंद करें (8)</button>
-                  </div>
-              </div>
-              </div>
-
-        <div id="tab-support" class="tab-content">
-             <h2 class="section-title">
-                 <i data-lucide="life-buoy"></i>
-                 सहायता केंद्र और मेंटरशिप
-             </h2>
-
-              <div class="resource-card" onclick="findKendra()">
-                   <div class="resource-icon-container kendra">
-                       <i data-lucide="map-pin"></i>
-                   </div>
-                   <div class="resource-content">
-                       <div class="resource-title">नज़दीकी ग्रामीण सहायता केंद्र खोजें</div>
-                       <div class="resource-desc">ऐप सपोर्ट, ट्रेनिंग और दस्तावेज़ मदद के लिए संपर्क करें।</div>
-                   </div>
+        <div class="info-card help-card">
+             <div class="card-header">
+                 <div class="card-title"><i data-lucide="help-circle"></i>सहायता और समर्थन</div>
+            </div>
+             <div class="help-item" onclick="openHelpLink('faq')">
+                  <i data-lucide="book-open"></i>
+                  <span>अक्सर पूछे जाने वाले प्रश्न (FAQ)</span>
+                  <i data-lucide="chevron-right" class="chevron-icon"></i>
+             </div>
+              <div class="help-item" onclick="openHelpLink('contact')">
+                  <i data-lucide="message-circle"></i>
+                  <span>हमसे संपर्क करें (Contact Us)</span>
                    <i data-lucide="chevron-right" class="chevron-icon"></i>
              </div>
-
-              <div class="resource-card" onclick="requestMentor()">
-                   <div class="resource-icon-container mentor-req">
-                       <i data-lucide="user-check"></i>
-                   </div>
-                   <div class="resource-content">
-                       <div class="resource-title">मेंटरशिप के लिए अनुरोध करें</div>
-                       <div class="resource-desc">अनुभवी मेंटर्स से विशिष्ट व्यावसायिक सलाह प्राप्त करें।</div>
-                   </div>
+              <div class="help-item" onclick="openHelpLink('find_kendra')">
+                  <i data-lucide="map-pin"></i>
+                  <span>नज़दीकी सहायता केंद्र (Find Kendra)</span>
                    <i data-lucide="chevron-right" class="chevron-icon"></i>
              </div>
+        </div>
 
-             <h2 class="section-title" style="margin-top: 30px;">
-                 <i data-lucide="star"></i>
-                 हमारे मेंटर्स से मिलें
-             </h2>
+        <button class="logout-btn" onclick="logout()">
+             <i data-lucide="log-out"></i> लॉग आउट करें
+        </button>
 
-             <div class="mentor-card">
-                 <div class="mentor-photo"><i data-lucide="user"></i></div>
-                 <div class="mentor-details">
-                     <div class="mentor-name">श्रीमती अनन्या देसाई</div>
-                     <div class="mentor-expertise">
-                         <i data-lucide="briefcase"></i> डिजिटल मार्केटिंग विशेषज्ञ
-                     </div>
-                     <button class="connect-btn" onclick="connectMentor('mentor01')">
-                          संपर्क करें <i data-lucide="arrow-right"></i>
-                     </button>
-                 </div>
-             </div>
-
-             <div class="mentor-card">
-                 <div class="mentor-photo"><i data-lucide="user"></i></div>
-                 <div class="mentor-details">
-                     <div class="mentor-name">श्री रमेश गुप्ता</div>
-                     <div class="mentor-expertise">
-                         <i data-lucide="package"></i> पैकेजिंग और लॉजिस्टिक्स सलाहकार
-                     </div>
-                     <button class="connect-btn" onclick="connectMentor('mentor02')">
-                          संपर्क करें <i data-lucide="arrow-right"></i>
-                     </button>
-                 </div>
-             </div>
-             </div>
-
-    </div> <div class="float-button" onclick="openFABAction()">
-        <i data-lucide="plus"></i>
-    </div>
+    </div> <div class="float-button" onclick="openEditProfile('summary')">
+        <i data-lucide="edit"></i> </div>
 
      <div class="bottom-nav">
         <a href="#home" class="nav-item" onclick="navigateApp('home', this, event)">
@@ -683,102 +481,105 @@
             <i data-lucide="briefcase" class="nav-icon"></i>
             <div>अवसर सेतु</div>
         </a>
-        <div class="nav-item fab-placeholder"></div> <a href="#kaushal" class="nav-item active" onclick="navigateApp('kaushal', this, event)">
+        <div class="nav-item fab-placeholder"></div> <a href="#kaushal" class="nav-item" onclick="navigateApp('kaushal', this, event)">
             <i data-lucide="book-open-text" class="nav-icon"></i>
             <div>कौशल केंद्र</div>
         </a>
-        <a href="#logistics" class="nav-item" onclick="navigateApp('logistics', this, event)">
-            <i data-lucide="truck" class="nav-icon"></i>
-            <div>सुगम लॉजिस्टिक्स</div>
+         <a href="#profile" class="nav-item active" onclick="navigateApp('profile', this, event)">
+            <i data-lucide="user-round" class="nav-icon"></i>
+            <div>प्रोफ़ाइल</div>
         </a>
     </div>
 
     <script>
         try {
             lucide.createIcons();
-            console.log("Lucide icons initialized for Kaushal Kendra.");
+            console.log("Lucide icons initialized for Profile Page.");
         } catch (error) {
             console.error("Error initializing Lucide icons:", error);
         }
 
-        // --- Tab Switching Logic (Same as Avsar Setu) ---
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
-            const selectedContent = document.getElementById('tab-' + tabId);
-            if (selectedContent) selectedContent.classList.add('active');
-            const selectedButton = document.querySelector(`.tab-button[onclick="switchTab('${tabId}')"]`);
-             if (selectedButton) selectedButton.classList.add('active');
-             console.log(`Switched to tab: ${tabId}`);
+        // --- Placeholder Functions for Profile Page ---
+        function openEditProfile(section) {
+            alert(`(Placeholder) Opening edit mode for section: ${section}`);
+            console.log(`Editing profile section: ${section}`);
+            // In a real app, this would likely open a modal or navigate to an edit screen.
         }
 
-        // --- Placeholder Functions for Kaushal Kendra ---
-        function navigateTo(section) { // Reused for general navigation clicks
-            alert(`(Placeholder) Navigating to: ${section}`);
-            console.log(`Navigating to: ${section}`);
-        }
-
-        function startLearning(moduleId) {
-            alert(`(Placeholder) Starting learning module: ${moduleId}`);
-            console.log(`Starting learning: ${moduleId}`);
-        }
-
-        function askQuestion() {
-            alert('(Placeholder) Opening form/modal to ask a question...');
-            console.log('Ask Question button clicked');
-            // You could implement a modal popup here or navigate to a dedicated form page.
-        }
-
-         function replyToPost(postId) {
-             alert(`(Placeholder) Replying to post ID: ${postId}`);
-             console.log(`Replying to post: ${postId}`);
+         function viewPublicShowcase() {
+             alert('(Placeholder) Navigating to view public Showcase profile...');
+             console.log('Viewing public Showcase');
          }
 
-         function likePost(postId) {
-              alert(`(Placeholder) Liking post ID: ${postId}`);
-              console.log(`Liking post: ${postId}`);
-              // Add logic to visually update the like count/icon state
+        function navigateToSection(sectionName) {
+             alert(`(Placeholder) Navigating to your '${sectionName}' section...`);
+             console.log(`Navigating to user section: ${sectionName}`);
+             // This would likely call navigateApp or a similar function to switch main views.
+             // Example: navigateApp(sectionName);
          }
 
-        function findKendra() {
-            alert('(Placeholder) Navigating to find nearest Gramin Sahayata Kendra...');
-            console.log('Finding Kendra...');
-        }
+         function openSetting(settingName) {
+             alert(`(Placeholder) Opening setting: ${settingName}`);
+             console.log(`Opening setting: ${settingName}`);
+             // Navigate to specific settings page
+         }
 
-        function requestMentor() {
-             alert('(Placeholder) Opening form/process to request mentorship...');
-             console.log('Requesting Mentor...');
-        }
+         function openHelpLink(helpTopic) {
+              alert(`(Placeholder) Opening help topic: ${helpTopic}`);
+              console.log(`Opening help: ${helpTopic}`);
+              // Navigate to FAQ, Contact form, or Kendra locator
+         }
 
-         function connectMentor(mentorId) {
-             alert(`(Placeholder) Initiating connection with Mentor ID: ${mentorId}`);
-             console.log(`Connecting with mentor: ${mentorId}`);
+         function logout() {
+              if (confirm('क्या आप वाकई लॉग आउट करना चाहते हैं?')) {
+                  alert('(Placeholder) Logging out...');
+                  console.log('User confirmed logout');
+                  // Add actual logout logic here (clear session, redirect, etc.)
+              } else {
+                   console.log('User cancelled logout');
+              }
          }
 
 
-         function openFABAction() {
-             // Example: Link FAB to asking a question in the community
-             alert('(Placeholder) Opening action from FAB (e.g., Ask a Question)...');
-             console.log('FAB clicked - potential action: Ask Question');
-             // Maybe switch to Community tab and trigger askQuestion?
-             switchTab('community');
-             // Scroll to top or focus relevant element if needed
-             // askQuestion(); // Optionally directly trigger the action
-         }
-
+        // --- Standard Bottom Nav Function (same as others) ---
          function navigateApp(pageName, element, event) {
-              event.preventDefault(); // Prevent default '#' link behavior
+              event.preventDefault();
               document.querySelectorAll('.bottom-nav a.nav-item').forEach(item => item.classList.remove('active'));
               if(element) element.classList.add('active');
-              alert(`(Placeholder) Navigating to main App Section: ${pageName}`);
+
+             // In this case, if they click profile while already here, do nothing extra visually.
+              if (pageName !== 'profile') {
+                 alert(`(Placeholder) Navigating to main App Section: ${pageName}`);
+              }
               console.log(`Navigating to App Section: ${pageName}`);
               // Load content for 'pageName' in a real app
          }
 
-        // Ensure the first tab is shown on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            switchTab('learn'); // Activate the 'learn' tab by default
-        });
+
+        // Optional: Add subtle animation on load
+         document.addEventListener('DOMContentLoaded', () => {
+             const summary = document.querySelector('.profile-summary');
+             const cards = document.querySelectorAll('.info-card, .action-card, .logout-btn');
+             if(summary) {
+                  summary.style.opacity = 0;
+                  summary.style.transform = 'translateY(-20px)';
+                  summary.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                  setTimeout(() => {
+                       summary.style.opacity = 1;
+                       summary.style.transform = 'translateY(0)';
+                  }, 100); // Delay slightly
+             }
+             cards.forEach((card, index) => {
+                  card.style.opacity = 0;
+                  card.style.transform = 'translateY(20px)';
+                  card.style.transition = `opacity 0.4s ease-out ${index * 0.05}s, transform 0.4s ease-out ${index * 0.05}s`;
+                   setTimeout(() => {
+                       card.style.opacity = 1;
+                       card.style.transform = 'translateY(0)';
+                  }, 200); // Start after summary animation
+             });
+         });
+
 
     </script>
 
