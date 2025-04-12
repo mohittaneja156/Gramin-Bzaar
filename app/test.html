@@ -2,261 +2,329 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>सरल शोकेस - ग्रामीण बाज़ार कनेक्ट</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>सुगम लॉजिस्टिक्स - ग्रामीण बाज़ार कनेक्ट</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* --- CSS Variables for Theming (Same as Homepage) --- */
+        /* --- CSS Variables for Theming (Using Blue as primary for Logistics) --- */
         :root {
-             --primary: #14B8A6; /* Teal */
-             --primary-light: #5EEAD4; /* Lighter Teal */
-             --secondary: #EC4899; /* Pink */
-             --accent: #0F766E; /* Darker Teal */
-             --light-bg: #f0fdfa; /* Very Light Teal */
-             --text-dark: #1f2937; /* Dark Gray */
-             --text-light: #6b7280; /* Medium Gray */
-             --card-bg: #ffffff;
-             --warning: #F59E0B; /* Amber */
-             --info: #3B82F6; /* Blue */
-             --danger: #ef4444; /* Red */
-             --success: #22c55e; /* Green */
-             --success-light: #dcfce7; /* Light Green */
-             --danger-light: #fee2e2; /* Light Red */
-             --disabled-bg: #f3f4f6; /* Light Gray */
-             --disabled-text: #9ca3af; /* Medium Gray */
-         }
+            --primary: #14B8A6; /* Teal */
+            --primary-light: #5EEAD4; /* Lighter Teal */
+            --secondary: #EC4899; /* Pink */
+            --accent: #0F766E; /* Darker Teal */
+            --light-bg: #f0fdfa; /* Very Light Teal */
+            --text-dark: #1f2937; /* Dark Gray */
+            --text-light: #6b7280; /* Medium Gray */
+            --card-bg: #ffffff;
+            --warning: #F59E0B; /* Amber */
+            --info: #3B82F6; /* Blue */
+            --info-light: #93C5FD; /* Lighter Blue */
+            --info-dark: #1E40AF; /* Darker Blue */
+            --danger: #ef4444; /* Red */
+            --success: #10b981; /* Green */
+            --purple: #8b5cf6; /* Purple */
+            --border-color: #e5e7eb; /* Light Gray Border */
+            --input-bg: #f9fafb; /* Input Background */
+        }
 
-        /* --- Global Reset and Font (Same as Homepage) --- */
+        /* --- Global Reset and Font --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif; }
-        body { background-color: var(--light-bg); color: var(--text-dark); padding-bottom: 80px; }
+
+        /* --- Body Styling --- */
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            padding-bottom: 80px; /* Space for bottom nav */
+        }
+
+        /* --- Main Container --- */
         .container { max-width: 480px; margin: 0 auto; padding: 0 15px; }
 
-        /* --- Header Styling (Same as previous Showcase page) --- */
+        /* --- Header Styling (Adapted for Logistics - Blue Theme) --- */
         .header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: linear-gradient(135deg, var(--info), var(--info-light));
             color: white;
-            padding: 20px 20px;
-            border-radius: 0 0 25px 25px;
+            padding: 25px 20px;
+            border-radius: 0 0 30px 30px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.25);
-            position: relative; /* For help button */
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); /* Blue shadow */
         }
-        .page-title { font-size: 20px; font-weight: 600; margin-bottom: 2px; }
-        .page-subtitle { font-size: 13px; opacity: 0.9; }
-
-        /* --- Help Button --- */
-        .help-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
         }
-        .help-btn:hover { background: rgba(255, 255, 255, 0.3); }
-        .help-btn i { width: 20px; height: 20px; }
+        .header-title i { width: 28px; height: 28px; margin-right: 10px; stroke-width: 2.5; }
+        .header-subtitle { font-size: 14px; opacity: 0.9; line-height: 1.4; }
 
-        /* --- Section Title Styling (Reused) --- */
+        /* --- Tab Navigation (Adapted - Blue Active State) --- */
+        .tabs {
+            display: flex;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+        .tab-button {
+            flex: 1;
+            padding: 12px 5px;
+            background: none; border: none;
+            font-size: 12.5px; /* Slightly smaller to fit 4 tabs */
+            font-weight: 500;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            border-bottom: 3px solid transparent;
+            text-align: center;
+        }
+        .tab-button i { width: 20px; height: 20px; stroke-width: 2; }
+        .tab-button.active {
+            color: var(--info); /* Blue for active tab */
+            font-weight: 600;
+            border-bottom-color: var(--info);
+        }
+        .tab-button:not(:last-child) { border-right: 1px solid #eee; }
+
+        /* --- Tab Content Area Styling --- */
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Section Title (Adapted - Dark Blue) --- */
         .section-title {
-            color: var(--accent); margin-bottom: 15px; font-size: 18px; font-weight: 600; display: flex; align-items: center; margin-top: 25px; /* Add top margin */
-        }
-        .section-title i { width: 20px; height: 20px; margin-right: 8px; stroke-width: 2; color: var(--primary); }
-
-
-        /* --- Profile Summary Card (Same as previous) --- */
-        .profile-summary-card { background: var(--card-bg); border-radius: 15px; padding: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); display: flex; align-items: center; gap: 15px; }
-        .profile-pic-placeholder { width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary-light); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0; }
-        .profile-pic-placeholder i { width: 30px; height: 30px; }
-        .profile-info { flex-grow: 1; }
-        .profile-name { font-weight: 600; font-size: 16px; margin-bottom: 3px; }
-        .profile-desc-snippet { font-size: 12px; color: var(--text-light); margin-bottom: 8px; }
-        .edit-profile-btn { background-color: var(--light-bg); color: var(--accent); border: 1px solid var(--primary-light); padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; transition: background-color 0.2s ease; }
-        .edit-profile-btn:hover { background-color: var(--primary-light); color: white; }
-        .edit-profile-btn i { width: 14px; height: 14px; margin-right: 4px; }
-
-        /* --- Platform Connections Section --- */
-        .platform-connections-section { margin-bottom: 25px; }
-        .platform-list { display: flex; flex-direction: column; gap: 10px; }
-        .platform-item {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 12px 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e5e7eb;
+            color: var(--info-dark);
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 12px;
         }
-        .platform-icon {
-            width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            /* Placeholder colors - replace with actual logos/colors */
-            background-color: var(--disabled-bg); color: var(--text-light);
+        .section-title i { width: 20px; height: 20px; margin-right: 8px; stroke-width: 2.5; color: var(--info-dark); }
+
+        /* --- Booking Form Styling --- */
+        .form-card {
+            background-color: var(--card-bg);
+            border-radius: 18px;
+            padding: 20px 15px 25px 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+            margin-bottom: 25px;
         }
-        .platform-icon i { width: 20px; height: 20px;}
-        .platform-icon.ondc { background-color: #ff6f61; color: white; } /* Example color */
-        .platform-icon.flipkart { background-color: #2874f0; color: white; } /* Example color */
-        .platform-icon.amazon { background-color: #ff9900; color: white; } /* Example color */
-        .platform-icon.whatsapp { background-color: #25d366; color: white; }
-
-        .platform-details { flex-grow: 1; }
-        .platform-name { font-weight: 500; font-size: 14px; }
-        .platform-status { font-size: 11px; }
-        .status-connected { color: var(--success); }
-        .status-disconnected { color: var(--text-light); }
-        .status-needs-action { color: var(--warning); }
-
-        .platform-action-btn {
-            background-color: var(--light-bg);
-            color: var(--accent);
-            border: 1px solid var(--primary-light);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
+        .form-section { margin-bottom: 20px; }
+        .form-section-title {
+             font-size: 15px;
+             font-weight: 600;
+             color: var(--accent);
+             margin-bottom: 15px;
+             padding-bottom: 5px;
+             border-bottom: 2px solid var(--primary-light);
+             display: flex; align-items: center; gap: 8px;
         }
-        .platform-action-btn:hover { background-color: var(--primary-light); color: white; }
-        .platform-action-btn.connect { border-color: var(--success); color: var(--success); }
-        .platform-action-btn.connect:hover { background-color: var(--success); color: white; }
-         .platform-action-btn.manage { border-color: var(--info); color: var(--info); }
-         .platform-action-btn.manage:hover { background-color: var(--info); color: white; }
+         .form-section-title i { width: 18px; height: 18px; stroke-width: 2.5; color: var(--primary); }
 
-
-        /* --- Visibility & Settings Section --- */
-        .visibility-settings-section { margin-bottom: 25px; }
-        .settings-list { display: flex; flex-direction: column; gap: 10px; }
-        .setting-item {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Pushes toggle to the right */
-            gap: 12px;
+        .form-group { margin-bottom: 18px; position: relative; }
+        .form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--text-dark); margin-bottom: 6px; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="number"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%; padding: 12px 15px 12px 45px; /* Padding for icon */
+            border: 1px solid var(--border-color); border-radius: 10px;
+            font-size: 14px; background-color: var(--input-bg); color: var(--text-dark);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            appearance: none;
         }
-        .setting-label { font-size: 14px; display: flex; align-items: center; gap: 8px; }
-        .setting-label i { width: 18px; height: 18px; color: var(--primary); }
+         .form-group textarea { padding: 12px 15px; min-height: 70px; resize: vertical; } /* No icon for textarea */
+         .form-group input.no-icon { padding-left: 15px; }
+         .input-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-light); pointer-events: none; width: 18px; height: 18px; stroke-width: 2; }
+         .form-group textarea + .input-icon { display: none; } /* Hide icon if it's for textarea */
 
-        /* Toggle Switch Styling */
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 40px; /* Smaller toggle */
-            height: 22px;
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--info); box-shadow: 0 0 0 3px var(--info-light); }
+         .select-wrapper::after { content: ''; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--text-light); pointer-events: none; }
+         .inline-fields { display: flex; gap: 10px; }
+         .inline-fields .form-group { flex: 1; }
+
+        /* Logistics Partner Option Card */
+         .partner-options-list { display: flex; flex-direction: column; gap: 15px; margin-top: 10px; }
+         .partner-option-card {
+             border: 1px solid var(--border-color); border-radius: 12px;
+             padding: 15px; display: flex; align-items: center; gap: 15px;
+             transition: border-color 0.2s ease, box-shadow 0.2s ease;
+             cursor: pointer;
+         }
+         .partner-option-card.selected { border-color: var(--info); box-shadow: 0 0 0 3px var(--info-light); background-color: #eff6ff; } /* Light blue bg */
+
+         .partner-logo {
+             width: 45px; height: 45px; border-radius: 8px;
+             background-color: var(--border-color); /* Placeholder */
+             display: flex; align-items: center; justify-content: center;
+             font-size: 10px; color: var(--text-light); text-align: center;
+             flex-shrink: 0; overflow: hidden;
+         }
+         .partner-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+         .partner-logo i { width: 24px; height: 24px; color: var(--text-light); }
+
+         .partner-details { flex-grow: 1; }
+         .partner-name { font-weight: 600; font-size: 14px; color: var(--text-dark); margin-bottom: 2px; }
+         .partner-rating { display: flex; align-items: center; gap: 3px; font-size: 12px; color: var(--text-light); margin-bottom: 4px; }
+         .partner-rating i { width: 14px; height: 14px; color: var(--warning); fill: var(--warning); }
+         .partner-price { font-size: 15px; font-weight: 600; color: var(--info-dark); }
+
+         /* Submit Button (Blue) */
+         .submit-btn {
+            display: block; width: 100%; padding: 13px 20px;
+            background: linear-gradient(135deg, var(--info), var(--info-dark)); /* Blue gradient */
+            color: white; border: none; border-radius: 10px;
+            font-size: 16px; font-weight: 600; text-align: center; cursor: pointer;
+            transition: all 0.3s ease; margin-top: 25px;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 22px;
+        .submit-btn:hover { opacity: 0.9; box-shadow: 0 7px 20px rgba(59, 130, 246, 0.4); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+
+
+        /* --- My Shipments Card Styling --- */
+        .shipment-list { display: flex; flex-direction: column; gap: 15px; }
+        .shipment-card {
+             background: var(--card-bg); border-radius: 15px; padding: 15px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); border-left: 5px solid; /* Status color */
+             display: flex; flex-direction: column; gap: 10px;
+         }
+        /* Status specific border colors */
+         .shipment-card.status-pending { border-left-color: var(--warning); }
+         .shipment-card.status-transit { border-left-color: var(--info); }
+         .shipment-card.status-delivered { border-left-color: var(--success); }
+         .shipment-card.status-cancelled { border-left-color: var(--danger); }
+
+         .shipment-header { display: flex; justify-content: space-between; align-items: center; }
+         .tracking-id { font-size: 13px; font-weight: 600; color: var(--accent); background-color: var(--light-bg); padding: 3px 8px; border-radius: 5px; }
+         .shipment-date { font-size: 12px; color: var(--text-light); }
+
+         .shipment-details { display: flex; align-items: center; gap: 10px; }
+         .shipment-icon {
+             width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
+             flex-shrink: 0; color: white;
+         }
+         /* Status specific icon colors */
+         .shipment-icon.status-pending { background-color: var(--warning); }
+         .shipment-icon.status-transit { background-color: var(--info); }
+         .shipment-icon.status-delivered { background-color: var(--success); }
+         .shipment-icon.status-cancelled { background-color: var(--danger); }
+          .shipment-icon i { width: 22px; height: 22px; stroke-width: 2; }
+
+         .shipment-info { flex-grow: 1; }
+         .shipment-destination { font-size: 14px; font-weight: 500; color: var(--text-dark); margin-bottom: 3px; }
+         .shipment-status-text { font-size: 12px; font-weight: 500; }
+         /* Status specific text colors */
+         .shipment-status-text.status-pending { color: var(--warning); }
+         .shipment-status-text.status-transit { color: var(--info); }
+         .shipment-status-text.status-delivered { color: var(--success); }
+         .shipment-status-text.status-cancelled { color: var(--danger); }
+
+
+         .track-btn {
+            background-color: var(--info); color: white; border: none; border-radius: 8px;
+            padding: 8px 15px; font-size: 13px; font-weight: 500; cursor: pointer;
+            transition: background-color 0.2s ease; display: inline-flex; align-items: center; gap: 5px;
+            margin-top: 5px; align-self: flex-end; /* Position button to the right */
         }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
+        .track-btn:hover { background-color: var(--info-dark); }
+        .track-btn i { width: 16px; height: 16px; stroke-width: 2.5; }
+
+        /* --- Packaging Guide Card --- */
+         .guide-list { display: grid; grid-template-columns: 1fr; gap: 15px; } /* Or use grid like learning */
+         .guide-card { /* Reusing resource-card style */
+            background: var(--card-bg); border-radius: 15px; padding: 15px;
+            display: flex; align-items: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color); cursor: pointer;
+            transition: border-color 0.2s ease, transform 0.2s ease; gap: 15px;
         }
-        input:checked + .slider { background-color: var(--primary); }
-        input:checked + .slider:before { transform: translateX(18px); }
-
-
-        /* --- Product List Section & Cards (Minor adjustments) --- */
-        .product-list-section { margin-bottom: 20px; }
-        .product-list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .product-list-header .section-title { margin-top: 0; margin-bottom: 0;} /* Reset margins */
-        .add-product-btn-inline { /* Secondary Add button */
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 500;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: background-color 0.2s ease;
+        .guide-card:hover { border-color: var(--info); transform: translateY(-2px); }
+        .guide-icon-container {
+             width: 45px; height: 45px; border-radius: 10px; display: flex;
+             align-items: center; justify-content: center; flex-shrink: 0; color: white;
+             background: linear-gradient(135deg, var(--info), var(--info-light)); /* Blue gradient */
         }
-         .add-product-btn-inline:hover { background-color: #d02670; /* Darker pink */ }
-         .add-product-btn-inline i { width: 16px; height: 16px; }
+        .guide-icon-container i { width: 24px; height: 24px; stroke-width: 2; }
+        .guide-content { flex: 1; }
+        .guide-title { font-weight: 600; margin-bottom: 4px; font-size: 15px; color: var(--text-dark); }
+        .guide-desc { font-size: 12px; color: var(--text-light); line-height: 1.4; }
+        .guide-card .chevron-icon { color: var(--text-light); margin-left: auto; width: 18px; height: 18px; }
 
-        .product-list { display: flex; flex-direction: column; gap: 15px; }
-        .product-card { background: var(--card-bg); border-radius: 15px; padding: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); border: 1px solid #e5e7eb; display: flex; gap: 15px; }
 
-        /* Icon Placeholder for Product Image */
-        .product-icon-placeholder {
-            width: 80px; height: 80px; flex-shrink: 0; border-radius: 10px;
-            background-color: var(--light-bg); border: 1px dashed var(--primary-light);
-            display: flex; align-items: center; justify-content: center; color: var(--primary);
+         /* --- Pooling Opportunity Card --- */
+         .pooling-list { display: flex; flex-direction: column; gap: 15px; }
+         .pooling-card {
+             background: var(--card-bg); border-radius: 15px; padding: 15px;
+             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+             border-left: 5px solid var(--success); /* Green accent for savings */
+         }
+         .pooling-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;}
+         .pooling-destination { font-size: 15px; font-weight: 600; color: var(--info-dark); }
+         .pooling-saving {
+             background-color: var(--success); color: white; font-size: 12px; font-weight: 500;
+             padding: 4px 8px; border-radius: 5px; display: inline-flex; align-items: center; gap: 4px;
+         }
+          .pooling-saving i { width: 14px; height: 14px; stroke-width: 2.5; }
+
+          .pooling-details { font-size: 13px; color: var(--text-light); line-height: 1.5; margin-bottom: 12px; }
+          .pooling-details strong { color: var(--text-dark); }
+
+          .join-pooling-btn {
+              background-color: var(--success); color: white; border: none; border-radius: 8px;
+              padding: 9px 18px; font-size: 14px; font-weight: 500; cursor: pointer;
+              transition: background-color 0.2s ease; display: inline-flex; align-items: center; gap: 6px;
+          }
+           .join-pooling-btn:hover { background-color: #059669; } /* Darker Green */
+          .join-pooling-btn i { width: 16px; height: 16px; stroke-width: 2.5; }
+
+
+        /* --- Bottom Navigation Styling (Active state for Logistics - Blue) --- */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px; margin: 0 auto;
+            background: white; display: flex; height: 65px; padding: 5px 0;
+            box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08); border-top: 1px solid #f0f0f0;
+            z-index: 100;
         }
-        .product-icon-placeholder i { width: 40px; height: 40px; stroke-width: 1.5; }
-
-        /* Rest of Product Card styles remain largely the same */
-        .product-details { flex-grow: 1; }
-        .product-name { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
-        .product-price { font-size: 14px; color: var(--primary); font-weight: 500; margin-bottom: 5px; }
-        .product-status-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-        .status-badge { font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 15px; display: inline-flex; align-items: center; gap: 4px; }
-        .status-badge i { width: 12px; height: 12px; }
-        .badge-instock { background-color: var(--success-light); color: var(--success); }
-        .badge-outofstock { background-color: var(--danger-light); color: var(--danger); }
-
-        /* Updated E-commerce Icons with labels */
-        .ecommerce-icons { display: flex; align-items: center; gap: 8px; }
-        .ecommerce-icon-item { display: flex; align-items: center; gap: 3px; font-size: 11px; color: var(--text-light); }
-        .ecommerce-icon-item i { width: 14px; height: 14px; opacity: 0.7; }
-        .ecommerce-icon-item i.active { color: var(--primary); opacity: 1; } /* Indicates listed */
-
-        .product-actions { display: flex; gap: 15px; margin-top: 10px; }
-        .action-icon-btn { background: none; border: none; padding: 0; cursor: pointer; color: var(--text-light); }
-        .action-icon-btn:hover { color: var(--primary); }
-        .action-icon-btn.delete:hover { color: var(--danger); }
-        .action-icon-btn i { width: 18px; height: 18px; }
-
-        /* --- Empty State Styling (Same as previous) --- */
-        .empty-state { text-align: center; padding: 40px 20px; background: var(--card-bg); border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); }
-        .empty-state-icon { color: var(--primary-light); margin-bottom: 15px; }
-        .empty-state-icon i { width: 60px; height: 60px; stroke-width: 1.5; }
-        .empty-state h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--text-dark); }
-        .empty-state p { font-size: 14px; color: var(--text-light); margin-bottom: 20px; }
-        .empty-state .add-product-btn-inline { /* Reuse inline button style */ display: inline-flex; flex: none; width: auto; }
-
-
-        /* --- Bottom Navigation & FAB Styling (Same as Homepage) --- */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px; margin: 0 auto; background: white; display: flex; height: 65px; padding: 5px 0; box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08); border-top: 1px solid #f0f0f0; z-index: 100; }
-        .nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5px 0; color: var(--text-light); text-decoration: none; font-size: 10px; font-weight: 500; transition: color 0.2s ease; position: relative; }
+        .nav-item {
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 5px 0; color: var(--text-light); text-decoration: none;
+            font-size: 10px; font-weight: 500; transition: color 0.2s ease; position: relative;
+        }
         .nav-item:hover { color: var(--primary); }
         .nav-icon { margin-bottom: 4px; width: 24px; height: 24px; stroke-width: 2; }
-        .nav-item.active { color: var(--primary); font-weight: 600; }
+        .nav-item.active {
+            color: var(--info); /* Blue for active Logistics */
+            font-weight: 600;
+        }
         .nav-item.active .nav-icon { stroke-width: 2.5; }
         .nav-item.fab-placeholder { flex: 1.2; }
-        .float-button { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); width: 60px; height: 60px; background: linear-gradient(135deg, var(--secondary), #f9a8d4); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4); border: 3px solid white; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; z-index: 101; }
+
+        /* --- Floating Action Button Styling --- */
+        .float-button {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--secondary), #f9a8d4); /* Pink gradient */
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4);
+            border: 3px solid white; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+            z-index: 101;
+        }
         .float-button:hover { transform: translateX(-50%) scale(1.05); box-shadow: 0 8px 20px rgba(236, 72, 153, 0.5); }
         .float-button i { width: 28px; height: 28px; stroke-width: 2.5; }
+
+        /* Utility */
+        .hidden { display: none !important; }
 
     </style>
 </head>
@@ -265,185 +333,399 @@
     <div class="container">
 
         <div class="header">
-            <div class="page-title">सरल शोकेस</div>
-            <div class="page-subtitle">आपकी डिजिटल दुकान, उत्पाद और कनेक्शन</div>
-            <button class="help-btn" onclick="navigateTo('showcaseHelp')" title="सहायता">
-                <i data-lucide="help-circle"></i>
+            <div class="header-title">
+                <i data-lucide="truck"></i>
+                <span>सुगम लॉजिस्टिक्स</span>
+            </div>
+            <div class="header-subtitle">
+                आसानी से शिपमेंट बुक करें, ट्रैक करें और लागत बचाएं।
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="switchTab('booking')">
+                <i data-lucide="package-plus"></i>
+                <span>नई बुकिंग</span>
+            </button>
+            <button class="tab-button" onclick="switchTab('shipments')">
+                <i data-lucide="history"></i>
+                <span>मेरे शिपमेंट</span>
+            </button>
+            <button class="tab-button" onclick="switchTab('packaging')">
+                <i data-lucide="box"></i>
+                <span>पैकेजिंग गाइड</span>
+            </button>
+             <button class="tab-button" onclick="switchTab('pooling')">
+                <i data-lucide="users-round"></i>
+                <span>पूलिंग अवसर</span>
             </button>
         </div>
 
-        <div class="profile-summary-card">
-            <div class="profile-pic-placeholder"> <i data-lucide="user-round"></i> </div>
-            <div class="profile-info">
-                <div class="profile-name">आशा SHG - टोकरी यूनिट</div>
-                <div class="profile-desc-snippet">हाथ से बनी सुंदर और टिकाऊ टोकरियाँ...</div>
-                <button class="edit-profile-btn" onclick="navigateTo('editProfile')">
-                    <i data-lucide="pencil"></i> प्रोफ़ाइल संपादित करें
-                </button>
-            </div>
+        <div id="tab-booking" class="tab-content active">
+             <form id="booking-form" onsubmit="handleBooking(event)">
+                 <div class="form-card">
+                     <div class="form-section">
+                         <div class="form-section-title"><i data-lucide="map-pin"></i>शिपमेंट विवरण</div>
+                         <div class="form-group">
+                             <label for="pickup-address">पिकअप पता</label>
+                              <div class="input-wrapper">
+                                  <i class="input-icon" data-lucide="home"></i>
+                                 <input type="text" id="pickup-address" name="pickup_address" value="आशा SHG, रामपुर गाँव, राजस्थान" required placeholder="अपना पिकअप पता दर्ज करें">
+                                 </div>
+                         </div>
+                          <div class="form-group">
+                             <label for="delivery-address">डिलीवरी पता</label>
+                             <div class="input-wrapper">
+                                  <i class="input-icon" data-lucide="map"></i>
+                                 <input type="text" id="delivery-address" name="delivery_address" required placeholder="ग्राहक का पूरा पता पिनकोड सहित">
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label>पैकेज का वज़न (अनुमानित)</label>
+                             <div class="input-wrapper select-wrapper">
+                                 <i class="input-icon" data-lucide="scale"></i>
+                                 <select id="package-weight" name="package_weight" required>
+                                     <option value="" disabled selected>वज़न चुनें...</option>
+                                     <option value="<1kg">&lt; 1 किग्रा</option>
+                                     <option value="1-5kg">1-5 किग्रा</option>
+                                     <option value="5-10kg">5-10 किग्रा</option>
+                                     <option value="10-20kg">10-20 किग्रा</option>
+                                     <option value=">20kg">&gt; 20 किग्रा</option>
+                                 </select>
+                             </div>
+                         </div>
+                         <div class="inline-fields">
+                             <div class="form-group">
+                                 <label for="package-length">लंबाई (cm)</label>
+                                  <div class="input-wrapper">
+                                      <i class="input-icon" data-lucide="ruler"></i>
+                                     <input type="number" id="package-length" name="length" placeholder="उदा. 20">
+                                 </div>
+                             </div>
+                              <div class="form-group">
+                                 <label for="package-width">चौड़ाई (cm)</label>
+                                 <div class="input-wrapper">
+                                      <i class="input-icon" data-lucide="ruler"></i>
+                                     <input type="number" id="package-width" name="width" placeholder="उदा. 15">
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <label for="package-height">ऊंचाई (cm)</label>
+                                 <div class="input-wrapper">
+                                      <i class="input-icon" data-lucide="ruler"></i>
+                                     <input type="number" id="package-height" name="height" placeholder="उदा. 10">
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="form-section">
+                          <div class="form-section-title"><i data-lucide="truck"></i>लॉजिस्टिक्स पार्टनर चुनें</div>
+                          <div class="partner-options-list">
+                              <div class="partner-option-card" id="partner-1" onclick="selectPartner('partner-1')">
+                                   <div class="partner-logo"><i data-lucide="truck"></i></div>
+                                   <div class="partner-details">
+                                       <div class="partner-name">इंडिया पोस्ट (स्पीड पोस्ट)</div>
+                                       <div class="partner-rating"><i data-lucide="star"></i> 4.2 (रेटिंग)</div>
+                                       <div class="partner-price">₹ 180 (अनुमानित)</div>
+                                   </div>
+                                   <i data-lucide="circle" class="select-indicator"></i> </div>
+                              <div class="partner-option-card" id="partner-2" onclick="selectPartner('partner-2')">
+                                   <div class="partner-logo"><i data-lucide="zap"></i></div>
+                                   <div class="partner-details">
+                                       <div class="partner-name">डेल्हीवरी (एक्सप्रेस)</div>
+                                       <div class="partner-rating"><i data-lucide="star"></i> 4.5 (रेटिंग)</div>
+                                       <div class="partner-price">₹ 250 (अनुमानित)</div>
+                                   </div>
+                                    <i data-lucide="circle" class="select-indicator"></i>
+                              </div>
+                              <div class="partner-option-card" id="partner-3" onclick="selectPartner('partner-3')">
+                                   <div class="partner-logo"><i data-lucide="package"></i></div>
+                                   <div class="partner-details">
+                                       <div class="partner-name">ईकॉम एक्सप्रेस (स्टैंडर्ड)</div>
+                                       <div class="partner-rating"><i data-lucide="star"></i> 4.0 (रेटिंग)</div>
+                                       <div class="partner-price">₹ 150 (अनुमानित)</div>
+                                   </div>
+                                    <i data-lucide="circle" class="select-indicator"></i>
+                              </div>
+                               </div>
+                          <input type="hidden" id="selected-partner" name="selected_partner">
+                     </div>
+
+                      <div class="form-section">
+                         <div class="form-section-title"><i data-lucide="credit-card"></i>भुगतान</div>
+                         <p style="font-size: 14px; color: var(--text-light); margin-bottom: 15px;">शिपमेंट बुक करने के लिए भुगतान पूरा करें।</p>
+                         <div style="text-align: center; padding: 20px; background-color: var(--input-bg); border-radius: 10px;">
+                              <p style="font-weight: 500;">(यहां भुगतान विकल्प दिखाएं - UPI, नेट बैंकिंग आदि)</p>
+                              <button type="button" class="submit-btn" style="margin-top: 15px; background: linear-gradient(135deg, var(--success), #10b981); box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);" onclick="makePayment()">अभी भुगतान करें</button>
+                         </div>
+                     </div>
+
+                     <button type="submit" class="submit-btn" disabled id="book-shipment-btn">शिपमेंट बुक करें</button>
+                 </div>
+            </form>
         </div>
 
-        <div class="platform-connections-section">
-             <h2 class="section-title">
-                 <i data-lucide="link"></i>
-                 ई-कॉमर्स प्लेटफॉर्म कनेक्शन
-            </h2>
-            <div class="platform-list">
-                <div class="platform-item">
-                    <div class="platform-icon ondc"><i data-lucide="shopping-bag"></i></div>
-                    <div class="platform-details">
-                        <div class="platform-name">ONDC</div>
-                        <div class="platform-status status-connected">कनेक्टेड</div>
-                    </div>
-                    <button class="platform-action-btn manage" onclick="managePlatform('ondc')">प्रबंधित करें</button>
-                </div>
-                 <div class="platform-item">
-                     <div class="platform-icon flipkart"><i data-lucide="store"></i></div>
-                     <div class="platform-details">
-                         <div class="platform-name">Flipkart Samarth</div>
-                         <div class="platform-status status-disconnected">कनेक्ट नहीं है</div>
-                     </div>
-                     <button class="platform-action-btn connect" onclick="connectPlatform('flipkart')">कनेक्ट करें</button>
-                 </div>
-                 <div class="platform-item">
-                     <div class="platform-icon amazon"><i data-lucide="shopping-cart"></i></div>
-                     <div class="platform-details">
-                         <div class="platform-name">Amazon Karigar</div>
-                         <div class="platform-status status-needs-action">सत्यापन आवश्यक</div>
-                     </div>
-                     <button class="platform-action-btn manage" onclick="managePlatform('amazon')">प्रबंधित करें</button>
-                 </div>
-                 <div class="platform-item">
-                      <div class="platform-icon whatsapp"><i data-lucide="message-circle"></i></div>
-                      <div class="platform-details">
-                          <div class="platform-name">WhatsApp Business</div>
-                          <div class="platform-status status-connected">कनेक्टेड (पूछताछ सक्षम)</div>
+        <div id="tab-shipments" class="tab-content">
+             <h2 class="section-title"><i data-lucide="history"></i>आपके हाल के शिपमेंट्स</h2>
+              <div class="shipment-list">
+                  <div class="shipment-card status-transit">
+                      <div class="shipment-header">
+                          <span class="tracking-id">AWB789012345</span>
+                          <span class="shipment-date">01 अप्रैल 2025</span>
                       </div>
-                      <button class="platform-action-btn manage" onclick="managePlatform('whatsapp')">प्रबंधित करें</button>
+                      <div class="shipment-details">
+                           <div class="shipment-icon status-transit"><i data-lucide="truck"></i></div>
+                           <div class="shipment-info">
+                               <div class="shipment-destination">दिल्ली बुटीक, दिल्ली</div>
+                               <div class="shipment-status-text status-transit">इन ट्रांजिट (रास्ते में)</div>
+                           </div>
+                      </div>
+                       <button class="track-btn" onclick="trackShipment('AWB789012345')"><i data-lucide="map-pin"></i> ट्रैक करें</button>
                   </div>
-            </div>
+                   <div class="shipment-card status-delivered">
+                      <div class="shipment-header">
+                          <span class="tracking-id">AWB654321098</span>
+                           <span class="shipment-date">28 मार्च 2025</span>
+                      </div>
+                      <div class="shipment-details">
+                           <div class="shipment-icon status-delivered"><i data-lucide="package-check"></i></div>
+                           <div class="shipment-info">
+                               <div class="shipment-destination">जयपुर ग्राहक, राजस्थान</div>
+                               <div class="shipment-status-text status-delivered">डिलीवर हो गया</div>
+                           </div>
+                      </div>
+                       </div>
+                   <div class="shipment-card status-pending">
+                      <div class="shipment-header">
+                          <span class="tracking-id">AWB112233445</span>
+                           <span class="shipment-date">03 अप्रैल 2025</span>
+                      </div>
+                      <div class="shipment-details">
+                           <div class="shipment-icon status-pending"><i data-lucide="circle-dot"></i></div>
+                           <div class="shipment-info">
+                               <div class="shipment-destination">मुंबई कॉर्पोरेट, महाराष्ट्र</div>
+                               <div class="shipment-status-text status-pending">पिकअप लंबित है</div>
+                           </div>
+                      </div>
+                       <button class="track-btn" style="background-color: var(--warning);" onclick="trackShipment('AWB112233445')"><i data-lucide="alert-circle"></i> स्थिति देखें</button>
+                  </div>
+                  </div>
         </div>
 
-        <div class="visibility-settings-section">
-            <h2 class="section-title">
-                 <i data-lucide="eye"></i>
-                 आपकी दुकान की दृश्यता
-            </h2>
-            <div class="settings-list">
-                <div class="setting-item">
-                    <label for="localDiscoveryToggle" class="setting-label">
-                        <i data-lucide="map-pin"></i> स्थानीय खोज (Local Discovery)
-                    </label>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="localDiscoveryToggle" checked onchange="updateVisibility('local', this.checked)">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                 <div class="setting-item">
-                    <label for="b2bVisibilityToggle" class="setting-label">
-                         <i data-lucide="briefcase"></i> B2B पोर्टल पर दिखें
-                    </label>
-                    <label class="toggle-switch">
-                         <input type="checkbox" id="b2bVisibilityToggle" onchange="updateVisibility('b2b', this.checked)">
-                         <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
+        <div id="tab-packaging" class="tab-content">
+              <h2 class="section-title"><i data-lucide="gift"></i>पैकेजिंग संबंधी सहायता</h2>
+              <div class="guide-list">
+                  <div class="guide-card" onclick="viewGuide('standard_packaging')">
+                       <div class="guide-icon-container"><i data-lucide="package"></i></div>
+                       <div class="guide-content">
+                           <div class="guide-title">मानक पैकेजिंग कैसे करें (वीडियो)</div>
+                           <div class="guide-desc">शिपमेंट के लिए अपने उत्पादों को सुरक्षित रूप से पैक करने का तरीका जानें।</div>
+                       </div>
+                       <i data-lucide="play-circle" class="chevron-icon"></i>
+                 </div>
+                  <div class="guide-card" onclick="viewGuide('fragile_items')">
+                       <div class="guide-icon-container"><i data-lucide="glass-water"></i></div>
+                       <div class="guide-content">
+                           <div class="guide-title">नाजुक वस्तुओं की पैकिंग (इन्फोग्राफिक)</div>
+                           <div class="guide-desc">कांच, मिट्टी के बर्तन आदि जैसी नाजुक वस्तुओं को पैक करने के टिप्स।</div>
+                       </div>
+                      <i data-lucide="image" class="chevron-icon"></i>
+                 </div>
+                  <div class="guide-card" onclick="viewGuide('liquid_items')">
+                       <div class="guide-icon-container"><i data-lucide="droplet"></i></div>
+                       <div class="guide-content">
+                           <div class="guide-title">तरल पदार्थ पैक करना (चेकलिस्ट)</div>
+                           <div class="guide-desc">लीकेज रोकने के लिए अचार, तेल आदि पैक करने के निर्देश।</div>
+                       </div>
+                       <i data-lucide="list-checks" class="chevron-icon"></i>
+                 </div>
+                  </div>
+        </div>
+
+         <div id="tab-pooling" class="tab-content">
+              <h2 class="section-title"><i data-lucide="coins"></i>लागत बचाएं: शिपमेंट पूलिंग</h2>
+              <p style="font-size: 14px; color: var(--text-light); margin-bottom: 20px; line-height: 1.6;">
+                  अपने आस-पास के अन्य उद्यमियों के साथ मिलकर शिपमेंट भेजें और लॉजिस्टिक्स लागत पर <strong style="color: var(--success);">40% तक</strong> बचाएं! नीचे उपलब्ध अवसर देखें।
+              </p>
+              <div class="pooling-list">
+                   <div class="pooling-card">
+                       <div class="pooling-header">
+                            <div class="pooling-destination">दिल्ली क्षेत्र</div>
+                            <div class="pooling-saving"><i data-lucide="trending-down"></i> ~₹350 बचत</div>
+                       </div>
+                       <div class="pooling-details">
+                            अगले <strong>2 दिनों</strong> में दिल्ली जाने वाले शिपमेंट के लिए पूल। न्यूनतम <strong>5 किग्रा</strong> आवश्यक। पिकअप हब: <strong>रामपुर केंद्र</strong>।
+                       </div>
+                       <button class="join-pooling-btn" onclick="joinPooling('pool_delhi_01')"><i data-lucide="plus"></i> शामिल हों / पूछताछ करें</button>
+                   </div>
+                   <div class="pooling-card">
+                       <div class="pooling-header">
+                            <div class="pooling-destination">मुंबई क्षेत्र</div>
+                            <div class="pooling-saving"><i data-lucide="trending-down"></i> ~₹420 बचत</div>
+                       </div>
+                       <div class="pooling-details">
+                            अगले सप्ताह मुंबई जाने वाले शिपमेंट के लिए पूल। न्यूनतम <strong>10 किग्रा</strong> आवश्यक। पिकअप हब: <strong>रामपुर केंद्र</strong>।
+                       </div>
+                       <button class="join-pooling-btn" onclick="joinPooling('pool_mumbai_02')"><i data-lucide="plus"></i> शामिल हों / पूछताछ करें</button>
+                   </div>
+                    <p style="font-size: 13px; color: var(--text-light; text-align: center; margin-top: 15px;">वर्तमान में आपके क्षेत्र के लिए कोई अन्य पूलिंग अवसर उपलब्ध नहीं है।</p>
+              </div>
         </div>
 
 
-        <div class="product-list-section">
-             <div class="product-list-header">
-                 <h2 class="section-title"> <i data-lucide="package"></i> आपके उत्पाद </h2>
-                 <button class="add-product-btn-inline" onclick="addProduct()">
-                      <i data-lucide="plus"></i> उत्पाद जोड़ें
-                 </button>
-            </div>
+    </div> <div class="float-button" onclick="startNewBooking()">
+        <i data-lucide="plus"></i>
+    </div>
 
-            <div class="product-list">
-                <div class="product-card">
-                    <div class="product-icon-placeholder" title="उत्पाद की छवि यहाँ दिखेगी">
-                        <i data-lucide="shopping-basket"></i> </div>
-                    <div class="product-details">
-                        <div class="product-name">सजावटी बांस की टोकरी</div>
-                        <div class="product-price">₹ 250</div>
-                        <div class="product-status-row">
-                            <span class="status-badge badge-instock"> <i data-lucide="check-circle"></i> स्टॉक में </span>
-                            <div class="ecommerce-icons">
-                                <span class="ecommerce-icon-item" title="ONDC पर लिस्टेड"> <i data-lucide="shopping-bag" class="active"></i> ONDC </span>
-                                <span class="ecommerce-icon-item" title="Flipkart पर लिस्टेड नहीं"> <i data-lucide="store"></i> Flipkart </span>
-                            </div>
-                        </div>
-                        <div class="product-actions">
-                             <button class="action-icon-btn" title="संपादित करें" onclick="editProduct('prod123')"> <i data-lucide="pencil"></i> </button>
-                             <button class="action-icon-btn delete" title="हटाएं" onclick="deleteProduct('prod123')"> <i data-lucide="trash-2"></i> </button>
-                         </div>
-                    </div>
-                </div>
-
-                 <div class="product-card">
-                    <div class="product-icon-placeholder" title="उत्पाद की छवि यहाँ दिखेगी">
-                        <i data-lucide="hand-metal"></i> </div>
-                    <div class="product-details">
-                        <div class="product-name">हाथ से बना जूट बैग</div>
-                        <div class="product-price">₹ 180</div>
-                         <div class="product-status-row">
-                            <span class="status-badge badge-outofstock"> <i data-lucide="x-circle"></i> स्टॉक खत्म </span>
-                             <div class="ecommerce-icons">
-                                <span class="ecommerce-icon-item" title="ONDC पर लिस्टेड नहीं"> <i data-lucide="shopping-bag"></i> ONDC </span>
-                                <span class="ecommerce-icon-item" title="Flipkart पर लिस्टेड नहीं"> <i data-lucide="store"></i> Flipkart </span>
-                            </div>
-                        </div>
-                         <div class="product-actions">
-                            <button class="action-icon-btn" title="संपादित करें" onclick="editProduct('prod456')"> <i data-lucide="pencil"></i> </button>
-                            <button class="action-icon-btn delete" title="हटाएं" onclick="deleteProduct('prod456')"> <i data-lucide="trash-2"></i> </button>
-                         </div>
-                    </div>
-                </div>
-            </div>
-
-             </div>
-
-    </div> <div class="float-button" onclick="addProduct()"> <i data-lucide="plus"></i> </div>
-
-    <div class="bottom-nav">
-        <a href="#" class="nav-item" onclick="setActive(this, event); navigateTo('home');"> <i data-lucide="home" class="nav-icon"></i> <div>होम</div> </a>
-        <a href="#" class="nav-item active" onclick="setActive(this, event);"> <i data-lucide="layout-list" class="nav-icon"></i> <div>शोकेस</div> </a>
-        <div class="nav-item fab-placeholder"></div>
-        <a href="#" class="nav-item" onclick="setActive(this, event); navigateTo('orders_logistics');"> <i data-lucide="receipt-text" class="nav-icon"></i> <div>ऑर्डर्स</div> </a>
-        <a href="#" class="nav-item" onclick="setActive(this, event); navigateTo('profile');"> <i data-lucide="user-round" class="nav-icon"></i> <div>प्रोफाइल</div> </a>
+     <div class="bottom-nav">
+        <a href="#home" class="nav-item" onclick="navigateApp('home', this, event)">
+            <i data-lucide="home" class="nav-icon"></i> <div>होम</div>
+        </a>
+        <a href="#avsar" class="nav-item" onclick="navigateApp('avsar', this, event)">
+            <i data-lucide="briefcase" class="nav-icon"></i> <div>अवसर सेतु</div>
+        </a>
+        <div class="nav-item fab-placeholder"></div> <a href="#kaushal" class="nav-item" onclick="navigateApp('kaushal', this, event)">
+            <i data-lucide="book-open-text" class="nav-icon"></i> <div>कौशल केंद्र</div>
+        </a>
+         <a href="#logistics" class="nav-item active" onclick="navigateApp('logistics', this, event)">
+            <i data-lucide="truck" class="nav-icon"></i> <div>सुगम लॉजिस्टिक्स</div>
+        </a>
     </div>
 
     <script>
         try {
             lucide.createIcons();
-            console.log("Lucide icons initialized.");
+            console.log("Lucide icons initialized for Sugam Logistics.");
         } catch (error) {
             console.error("Error initializing Lucide icons:", error);
         }
 
-        // --- Placeholder Functions ---
-        function navigateTo(page) { alert(`(Placeholder) Navigating to: ${page}`); console.log(`Navigating to: ${page}`); }
-        function addProduct() { alert('(Placeholder) Opening Add Product screen...'); console.log('Add Product action triggered'); }
-        function editProduct(productId) { alert(`(Placeholder) Editing Product ID: ${productId}`); console.log(`Editing Product ID: ${productId}`); }
-        function deleteProduct(productId) { if (confirm(`क्या आप वाकई उत्पाद ID: ${productId} को हटाना चाहते हैं?`)) { alert(`(Placeholder) Deleting Product ID: ${productId}`); console.log(`Deleting Product ID: ${productId}`); } }
-        function managePlatform(platform) { alert(`(Placeholder) Managing connection for: ${platform}`); console.log(`Managing connection for: ${platform}`); }
-        function connectPlatform(platform) { alert(`(Placeholder) Initiating connection for: ${platform}`); console.log(`Initiating connection for: ${platform}`); }
-        function updateVisibility(type, isEnabled) { alert(`(Placeholder) Setting ${type} visibility to: ${isEnabled}`); console.log(`Setting ${type} visibility to: ${isEnabled}`); }
-
-        function setActive(element, event) {
-             if(event) event.preventDefault();
-             document.querySelectorAll('.bottom-nav a.nav-item').forEach(item => item.classList.remove('active'));
-             element.classList.add('active');
+        // --- Tab Switching Logic ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+            const selectedContent = document.getElementById('tab-' + tabId);
+            if (selectedContent) selectedContent.classList.add('active');
+            const selectedButton = document.querySelector(`.tab-button[onclick="switchTab('${tabId}')"]`);
+             if (selectedButton) selectedButton.classList.add('active');
+             console.log(`Switched to tab: ${tabId}`);
+              // Scroll to top when switching tabs
+              window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initial setup for the active nav item & toggles
+         // --- Booking Form Logic ---
+         let selectedPartnerId = null;
+         const bookShipmentBtn = document.getElementById('book-shipment-btn'); // Assuming payment enables this
+
+         function selectPartner(partnerCardId) {
+              // Remove selected class from all partner cards
+              document.querySelectorAll('.partner-option-card').forEach(card => {
+                  card.classList.remove('selected');
+                  card.querySelector('.select-indicator')?.setAttribute('data-lucide', 'circle'); // Reset icon
+              });
+              // Add selected class to the clicked card
+              const selectedCard = document.getElementById(partnerCardId);
+              if (selectedCard) {
+                   selectedCard.classList.add('selected');
+                   selectedCard.querySelector('.select-indicator')?.setAttribute('data-lucide', 'check-circle-2'); // Check icon
+                   selectedPartnerId = partnerCardId;
+                   document.getElementById('selected-partner').value = partnerCardId; // Store selection
+                   console.log(`Selected partner: ${partnerCardId}`);
+                   // Check if booking can be enabled (add other checks like payment status)
+                   checkBookingValidity();
+              }
+               lucide.createIcons(); // Re-render icons
+         }
+
+        function makePayment() {
+             alert('(Placeholder) Redirecting to payment gateway...');
+             console.log('Initiating payment');
+             // After successful payment in a real app:
+             // bookShipmentBtn.disabled = false;
+             checkBookingValidity(); // Re-check validity (though button might still be disabled until partner is selected)
+        }
+
+         function checkBookingValidity() {
+             // Basic check: Enable booking only if a partner is selected (add payment check later)
+             const form = document.getElementById('booking-form');
+             if (selectedPartnerId && form.checkValidity()) { // Add payment status check here
+                 // bookShipmentBtn.disabled = false; // Enable only after payment success too
+                 console.log("Form potentially valid (partner selected)");
+             } else {
+                 // bookShipmentBtn.disabled = true;
+                  console.log("Form invalid or partner not selected");
+             }
+         }
+
+         // Add event listeners to form elements to potentially re-check validity
+         document.getElementById('booking-form').querySelectorAll('input, select').forEach(el => {
+              el.addEventListener('input', checkBookingValidity);
+              el.addEventListener('change', checkBookingValidity);
+         });
+
+
+        function handleBooking(event) {
+             event.preventDefault();
+             if (!selectedPartnerId) {
+                 alert('कृपया एक लॉजिस्टिक्स पार्टनर चुनें।');
+                 return;
+             }
+             // Add payment verification check here
+             alert(`(Placeholder) Booking shipment with partner: ${selectedPartnerId}...`);
+             console.log('Booking form submitted');
+             // Get form data and send to backend
+             // const formData = new FormData(event.target);
+             // const data = Object.fromEntries(formData.entries());
+             // console.log("Booking Data:", data);
+             // On success: maybe switch to 'My Shipments' tab and show a confirmation
+             // switchTab('shipments');
+         }
+
+
+        // --- Other Placeholder Functions ---
+        function trackShipment(trackingId) {
+             alert(`(Placeholder) Tracking shipment ID: ${trackingId}`);
+             console.log(`Tracking: ${trackingId}`);
+             // Navigate to a detailed tracking page or show modal
+        }
+
+         function viewGuide(guideId) {
+             alert(`(Placeholder) Viewing packaging guide: ${guideId}`);
+             console.log(`Viewing guide: ${guideId}`);
+             // Navigate to guide page or show modal with content
+         }
+
+        function joinPooling(poolId) {
+            alert(`(Placeholder) Joining/Inquiring about pooling opportunity: ${poolId}`);
+            console.log(`Joining pool: ${poolId}`);
+        }
+
+        function startNewBooking() {
+            console.log('FAB clicked - switching to booking tab');
+            switchTab('booking');
+             // Optionally focus the first relevant field
+             // document.getElementById('delivery-address')?.focus();
+        }
+
+        // --- Standard Bottom Nav Function ---
+         function navigateApp(pageName, element, event) {
+              event.preventDefault();
+              document.querySelectorAll('.bottom-nav a.nav-item').forEach(item => item.classList.remove('active'));
+              if(element) element.classList.add('active');
+              if (pageName !== 'logistics') {
+                 alert(`(Placeholder) Navigating to main App Section: ${pageName}`);
+              }
+              console.log(`Navigating to App Section: ${pageName}`);
+              // Load content for 'pageName' in a real app
+         }
+
+        // Initialize (Ensure Booking tab is active by default)
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.bottom-nav a.nav-item').forEach(item => {
-                 if (item.textContent.includes('शोकेस')) { item.classList.add('active'); } else { item.classList.remove('active'); }
-            });
-            // Set initial toggle states if needed from saved user preferences
+            switchTab('booking');
+             checkBookingValidity(); // Initial check
         });
+
     </script>
 
 </body>

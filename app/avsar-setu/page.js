@@ -58,7 +58,7 @@ export default function AvsarSetu() {
   };
 
   const goBack = () => {
-    router.back();
+    router.push('/'); // Changed to directly go to home page instead of back()
   };
 
   return (
@@ -67,15 +67,20 @@ export default function AvsarSetu() {
 
       <div className={styles.container}>
         <div className={styles.header}>
-          <button className={styles.backButton} onClick={goBack}>
-            <i data-lucide="chevron-left"></i>
-          </button>
-          <h1 className={styles.headerTitle}>
-            <i data-lucide="briefcase"></i> अवसर सेतु
-          </h1>
-          <p className={styles.headerSubtitle}>
-            सरकारी और कॉर्पोरेट खरीद, B2B बाज़ार और सहायता तक पहुंचें।
-          </p>
+          {/* Updated header layout to prevent overlapping */}
+          <div className={styles.headerContent}>
+            <button className={styles.backButton} onClick={goBack}>
+              <i data-lucide="chevron-left"></i>
+            </button>
+            <div>
+              <h1 className={styles.headerTitle}>
+                <i data-lucide="briefcase"></i> अवसर सेतु
+              </h1>
+              <p className={styles.headerSubtitle}>
+                सरकारी और कॉर्पोरेट खरीद, B2B बाज़ार और सहायता तक पहुंचें।
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className={styles.tabs}>

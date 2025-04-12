@@ -74,6 +74,9 @@ export default function Home() {
     } else if (section === 'showcase') {
       // Navigate to Saral Showcase page
       router.push('/saral-showcase');
+    } else if (section === 'logistics') {
+      // Navigate to Sugam Logistics page
+      router.push('/sugam-logistics');
     } else {
       // For other sections, keep the placeholder alert
       alert(`(Placeholder) Navigating to: ${section}`);
