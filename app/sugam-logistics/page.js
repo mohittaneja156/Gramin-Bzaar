@@ -120,13 +120,12 @@ export default function SugamLogistics() {
               <i data-lucide="chevron-left"></i>
             </button>
             <div>
-              <div className={styles.headerTitle}>
-                <i data-lucide="truck"></i>
-                <span>सुगम लॉजिस्टिक्स</span>
-              </div>
-              <div className={styles.headerSubtitle}>
-                आसानी से शिपमेंट बुक करें, ट्रैक करें और लागत बचाएं।
-              </div>
+              <h1 className={styles.headerTitle}>
+                <i data-lucide="truck"></i> सुगम लॉजिस्टिक्स
+              </h1>
+              <p className={styles.headerSubtitle}>
+                आसान और किफायती शिपिंग और डिलीवरी सेवाएँ
+              </p>
             </div>
           </div>
         </div>
