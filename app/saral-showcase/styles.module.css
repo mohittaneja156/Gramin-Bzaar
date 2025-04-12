@@ -1,0 +1,430 @@
+/* --- CSS Variables for Theming (Same as Homepage) --- */
+.container {
+    /* Define variables at the component level instead of :root */
+    --primary: #14B8A6; /* Teal */
+    --primary-light: #5EEAD4; /* Lighter Teal */
+    --secondary: #EC4899; /* Pink */
+    --accent: #0F766E; /* Darker Teal */
+    --light-bg: #f0fdfa; /* Very Light Teal */
+    --text-dark: #1f2937; /* Dark Gray */
+    --text-light: #6b7280; /* Medium Gray */
+    --card-bg: #ffffff;
+    --warning: #F59E0B; /* Amber */
+    --info: #3B82F6; /* Blue */
+    --danger: #ef4444; /* Red */
+    --success: #22c55e; /* Green */
+    --success-light: #dcfce7; /* Light Green */
+    --danger-light: #fee2e2; /* Light Red */
+    --disabled-bg: #f3f4f6; /* Light Gray */
+    --disabled-text: #9ca3af; /* Medium Gray */
+    
+    /* Container styles */
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 15px;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* --- Header Styling (Same as previous Showcase page) --- */
+.header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
+    padding: 20px 20px;
+    border-radius: 0 0 25px 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(20, 184, 166, 0.25);
+    position: relative; /* For help button */
+}
+.pageTitle { font-size: 20px; font-weight: 600; margin-bottom: 2px; }
+.pageSubtitle { font-size: 13px; opacity: 0.9; }
+
+/* --- Help Button --- */
+.helpBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.helpBtn:hover { background: rgba(255, 255, 255, 0.3); }
+.helpBtn i { width: 20px; height: 20px; }
+
+/* --- Section Title Styling (Reused) --- */
+.sectionTitle {
+    color: var(--accent); 
+    margin-bottom: 15px; 
+    font-size: 18px; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center; 
+    margin-top: 25px; /* Add top margin */
+}
+.sectionTitle i { width: 20px; height: 20px; margin-right: 8px; stroke-width: 2; color: var(--primary); }
+
+/* --- Profile Summary Card (Same as previous) --- */
+.profileSummaryCard { 
+    background: var(--card-bg); 
+    border-radius: 15px; 
+    padding: 15px; 
+    margin-bottom: 20px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+.profilePicPlaceholder { 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    background-color: var(--primary-light); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--accent); 
+    flex-shrink: 0; 
+}
+.profilePicPlaceholder i { width: 30px; height: 30px; }
+.profileInfo { flex-grow: 1; }
+.profileName { font-weight: 600; font-size: 16px; margin-bottom: 3px; }
+.profileDescSnippet { font-size: 12px; color: var(--text-light); margin-bottom: 8px; }
+.editProfileBtn { 
+    background-color: var(--light-bg); 
+    color: var(--accent); 
+    border: 1px solid var(--primary-light); 
+    padding: 6px 12px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    font-weight: 500; 
+    cursor: pointer; 
+    display: inline-flex; 
+    align-items: center; 
+    transition: background-color 0.2s ease; 
+}
+.editProfileBtn:hover { background-color: var(--primary-light); color: white; }
+.editProfileBtn i { width: 14px; height: 14px; margin-right: 4px; }
+
+/* --- Platform Connections Section --- */
+.platformConnectionsSection { margin-bottom: 25px; }
+.platformList { display: flex; flex-direction: column; gap: 10px; }
+.platformItem {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 12px 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.platformIcon {
+    width: 36px; 
+    height: 36px; 
+    flex-shrink: 0; 
+    border-radius: 8px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    /* Placeholder colors - replace with actual logos/colors */
+    background-color: var(--disabled-bg); 
+    color: var(--text-light);
+}
+.platformIcon i { width: 20px; height: 20px;}
+.platformIcon.ondc { background-color: #ff6f61; color: white; } /* Example color */
+.platformIcon.flipkart { background-color: #2874f0; color: white; } /* Example color */
+.platformIcon.amazon { background-color: #ff9900; color: white; } /* Example color */
+.platformIcon.whatsapp { background-color: #25d366; color: white; }
+
+.platformDetails { flex-grow: 1; }
+.platformName { font-weight: 500; font-size: 14px; }
+.platformStatus { font-size: 11px; }
+.statusConnected { color: var(--success); }
+.statusDisconnected { color: var(--text-light); }
+.statusNeedsAction { color: var(--warning); }
+
+.platformActionBtn {
+    background-color: var(--light-bg);
+    color: var(--accent);
+    border: 1px solid var(--primary-light);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.platformActionBtn:hover { background-color: var(--primary-light); color: white; }
+.platformActionBtn.connect { border-color: var(--success); color: var(--success); }
+.platformActionBtn.connect:hover { background-color: var(--success); color: white; }
+.platformActionBtn.manage { border-color: var(--info); color: var(--info); }
+.platformActionBtn.manage:hover { background-color: var(--info); color: white; }
+
+/* --- Visibility & Settings Section --- */
+.visibilitySettingsSection { margin-bottom: 25px; }
+.settingsList { display: flex; flex-direction: column; gap: 10px; }
+.settingItem {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes toggle to the right */
+    gap: 12px;
+}
+.settingLabel { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+.settingLabel i { width: 18px; height: 18px; color: var(--primary); }
+
+/* Toggle Switch Styling */
+.toggleSwitch {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* Smaller toggle */
+    height: 22px;
+}
+.toggleSwitch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 22px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+.toggleSwitch input:checked + .slider { background-color: var(--primary); }
+.toggleSwitch input:checked + .slider:before { transform: translateX(18px); }
+
+/* --- Product List Section & Cards (Minor adjustments) --- */
+.productListSection { margin-bottom: 20px; }
+.productListHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.productListHeader .sectionTitle { margin-top: 0; margin-bottom: 0;} /* Reset margins */
+.addProductBtnInline { /* Secondary Add button */
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+}
+.addProductBtnInline:hover { background-color: #d02670; /* Darker pink */ }
+.addProductBtnInline i { width: 16px; height: 16px; }
+
+.productList { display: flex; flex-direction: column; gap: 15px; }
+.productCard { 
+    background: var(--card-bg); 
+    border-radius: 15px; 
+    padding: 15px; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); 
+    border: 1px solid #e5e7eb; 
+    display: flex; 
+    gap: 15px; 
+}
+
+/* Icon Placeholder for Product Image */
+.productIconPlaceholder {
+    width: 80px; 
+    height: 80px; 
+    flex-shrink: 0; 
+    border-radius: 10px;
+    background-color: var(--light-bg); 
+    border: 1px dashed var(--primary-light);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--primary);
+}
+.productIconPlaceholder i { width: 40px; height: 40px; stroke-width: 1.5; }
+
+/* Rest of Product Card styles remain largely the same */
+.productDetails { flex-grow: 1; }
+.productName { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
+.productPrice { font-size: 14px; color: var(--primary); font-weight: 500; margin-bottom: 5px; }
+.productStatusRow { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.statusBadge { 
+    font-size: 11px; 
+    font-weight: 500; 
+    padding: 3px 8px; 
+    border-radius: 15px; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 4px; 
+}
+.statusBadge i { width: 12px; height: 12px; }
+.badgeInstock { background-color: var(--success-light); color: var(--success); }
+.badgeOutofstock { background-color: var(--danger-light); color: var(--danger); }
+
+/* Updated E-commerce Icons with labels */
+.ecommerceIcons { display: flex; align-items: center; gap: 8px; }
+.ecommerceIconItem { display: flex; align-items: center; gap: 3px; font-size: 11px; color: var(--text-light); }
+.ecommerceIconItem i { width: 14px; height: 14px; opacity: 0.7; }
+.ecommerceIconItem i.active { color: var(--primary); opacity: 1; } /* Indicates listed */
+
+.productActions { display: flex; gap: 15px; margin-top: 10px; }
+.actionIconBtn { background: none; border: none; padding: 0; cursor: pointer; color: var(--text-light); }
+.actionIconBtn:hover { color: var(--primary); }
+.actionIconBtn.delete:hover { color: var(--danger); }
+.actionIconBtn i { width: 18px; height: 18px; }
+
+/* --- Empty State Styling (Same as previous) --- */
+.emptyState { text-align: center; padding: 40px 20px; background: var(--card-bg); border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); }
+.emptyStateIcon { color: var(--primary-light); margin-bottom: 15px; }
+.emptyStateIcon i { width: 60px; height: 60px; stroke-width: 1.5; }
+.emptyState h3 { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: var(--text-dark); }
+.emptyState p { font-size: 14px; color: var(--text-light); margin-bottom: 20px; }
+.emptyState .addProductBtnInline { /* Reuse inline button style */ display: inline-flex; flex: none; width: auto; }
+
+/* --- Bottom Navigation & FAB Styling (Same as Homepage) --- */
+.bottomNav { 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    max-width: 480px; 
+    margin: 0 auto; 
+    background: white; 
+    display: flex; 
+    height: 65px; 
+    padding: 5px 0; 
+    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08); 
+    border-top: 1px solid #f0f0f0; 
+    z-index: 100; 
+}
+
+/* Add these styles for the back button */
+.backButton {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Update header to include the back button */
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+  }
+  
+.navItem { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 5px 0; 
+    color: var(--text-light); 
+    text-decoration: none; 
+    font-size: 10px; 
+    font-weight: 500; 
+    transition: color 0.2s ease; 
+    position: relative; 
+}
+.navItem:hover { color: var(--primary); }
+.navIcon { margin-bottom: 4px; width: 24px; height: 24px; stroke-width: 2; }
+.navItem.active { color: var(--primary); font-weight: 600; }
+.navItem.active .navIcon { stroke-width: 2.5; }
+.navItem.fabPlaceholder { flex: 1.2; }
+.floatButton { 
+    position: fixed; 
+    bottom: 30px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 60px; 
+    height: 60px; 
+    background: linear-gradient(135deg, var(--secondary), #f9a8d4); 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white;
+    box-shadow: 0 6px 15px rgba(236, 72, 153, 0.4);
+    border: 3px solid white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 101;
+}
+.floatButton:hover { 
+    transform: translateX(-50%) scale(1.05); 
+    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.5); 
+}
+.floatButton i { 
+    width: 28px; 
+    height: 28px; 
+    stroke-width: 2.5; 
+}
+
+/* Media queries for responsive design */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .productCard {
+        padding: 12px;
+    }
+    
+    .productIconPlaceholder {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .platformItem {
+        padding: 10px 12px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.slideUp {
+    animation: slideUp 0.3s ease-out;
+}

@@ -71,6 +71,9 @@ export default function Home() {
     if (section === 'opportunities') {
       // Navigate to Avsar Setu page
       router.push('/avsar-setu');
+    } else if (section === 'showcase') {
+      // Navigate to Saral Showcase page
+      router.push('/saral-showcase');
     } else {
       // For other sections, keep the placeholder alert
       alert(`(Placeholder) Navigating to: ${section}`);
@@ -843,6 +846,7 @@ export default function Home() {
         <i data-lucide="plus"></i>
       </div>
 
+      {/* Bottom Navigation */}
       <div className="bottom-nav">
         <a
           href="#"
@@ -861,7 +865,7 @@ export default function Home() {
           }}
         >
           <i data-lucide="briefcase" className="nav-icon"></i>
-          <div>अवसर</div>
+          <div>अवसर सेतु</div>
         </a>
         <div className="nav-item fab-placeholder"></div>
         <a
@@ -869,22 +873,22 @@ export default function Home() {
           className="nav-item"
           onClick={(e) => {
             setActive(e.currentTarget, e);
-            navigateTo('orders_logistics');
+            navigateTo('skills');
           }}
         >
-          <i data-lucide="receipt-text" className="nav-icon"></i>
-          <div>ऑर्डर्स</div>
+          <i data-lucide="book-open" className="nav-icon"></i>
+          <div>कौशल केंद्र</div>
         </a>
         <a
           href="#"
           className="nav-item"
           onClick={(e) => {
             setActive(e.currentTarget, e);
-            navigateTo('profile');
+            navigateTo('logistics');
           }}
         >
-          <i data-lucide="user-round" className="nav-icon"></i>
-          <div>प्रोफाइल</div>
+          <i data-lucide="truck" className="nav-icon"></i>
+          <div>सुगम लॉजिस्टिक्स</div>
         </a>
       </div>
     </>
