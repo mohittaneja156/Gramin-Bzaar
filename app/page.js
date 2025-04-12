@@ -87,9 +87,10 @@ export default function Home() {
     }
   };
 
+  // Update the addProduct function to navigate to the chatbot page
   const addProduct = () => {
-    alert("(Placeholder) Opening Add Product screen...");
-    console.log("Add Product FAB clicked");
+  // Navigate to the chatbot page instead of showing an alert
+  router.push('/sahayak-bot');
   };
 
   const toggleSearch = () => {
