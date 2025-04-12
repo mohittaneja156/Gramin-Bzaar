@@ -4,10 +4,11 @@ import { useState, useEffect, useRef } from 'react';
 import { 
   ChevronLeft, Send, Mic, Image, Paperclip, 
   Bot, User, RefreshCw, ThumbsUp, ThumbsDown,
-  Lightbulb, HelpCircle, Sparkles, Globe
+  Lightbulb, HelpCircle, Sparkles, Globe, Link,   Plus, Home, Briefcase, Truck, BookOpenText, BookOpen,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
+import ReactMarkdown from 'react-markdown';
 import styles from './styles.module.css';
 
 export default function SahayakBot() {
@@ -86,10 +87,22 @@ export default function SahayakBot() {
           messages: [
             {
               role: 'system',
-              content: `You are a helpful assistant for rural entrepreneurs in India. 
+              content: `You are a helpful assistant for rural entrepreneurs in India named "सहायक बॉट" (Sahayak Bot). 
                         Respond in ${language === 'hindi' ? 'Hindi' : 'English'} language. 
                         Keep responses concise, practical and focused on small business needs.
-                        Format your responses with proper line breaks and bullet points when listing items.`
+                        
+                        IMPORTANT FORMATTING INSTRUCTIONS:
+                        1. Format your responses using Markdown.
+                        2. Use **bold** for important points and headings.
+                        3. Use proper bullet points (•) or numbered lists for steps.
+                        4. Use headings (## or ###) for section titles.
+                        5. When providing links, use proper Markdown format [text](url).
+                        6. For important warnings or notes, use > blockquotes.
+                        7. Use proper paragraph breaks for readability.
+                        8. When explaining procedures, use numbered steps.
+                        9. When mentioning apps or services, provide links when possible.
+                        
+                        Be proactive and helpful. If you think the user might benefit from related information, suggest it briefly at the end of your response.`
             },
             ...messages.map(msg => ({
               role: msg.role,
@@ -215,7 +228,36 @@ export default function SahayakBot() {
                 }
               </div>
               <div className={styles.messageContent}>
-                <div className={styles.messageText}>{message.content}</div>
+                {message.role === 'assistant' && !message.isError && !message.isSystem ? (
+                  <div className={styles.messageText}>
+                    <ReactMarkdown 
+                      components={{
+                        a: ({node, ...props}) => (
+                          <a 
+                            {...props} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className={styles.messageLink}
+                          />
+                        ),
+                        ul: ({node, ...props}) => <ul className={styles.messageList} {...props} />,
+                        ol: ({node, ...props}) => <ol className={styles.messageOrderedList} {...props} />,
+                        li: ({node, ...props}) => <li className={styles.messageListItem} {...props} />,
+                        h1: ({node, ...props}) => <h1 className={styles.messageHeading1} {...props} />,
+                        h2: ({node, ...props}) => <h2 className={styles.messageHeading2} {...props} />,
+                        h3: ({node, ...props}) => <h3 className={styles.messageHeading3} {...props} />,
+                        p: ({node, ...props}) => <p className={styles.messageParagraph} {...props} />,
+                        blockquote: ({node, ...props}) => <blockquote className={styles.messageBlockquote} {...props} />,
+                        code: ({node, ...props}) => <code className={styles.messageCode} {...props} />,
+                        pre: ({node, ...props}) => <pre className={styles.messagePre} {...props} />
+                      }}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
+                ) : (
+                  <div className={styles.messageText}>{message.content}</div>
+                )}
                 <div className={styles.messageTime}>{formatTime(message.timestamp)}</div>
                 
                 {message.role === 'assistant' && !message.isError && !message.isSystem && (
@@ -306,9 +348,28 @@ export default function SahayakBot() {
         </div>
         
         <div className={styles.poweredBy}>
-          <Sparkles size={14} strokeWidth={2} />
-          <span>Powered by Groq & Llama 4</span>
         </div>
+      </div>
+
+
+      <div className={styles.bottomNav}>
+        <a href="#home" className={styles.navItem} onClick={(e) => navigateApp('home', e)}>
+          <Home size={24} strokeWidth={2} className={styles.navIcon} />
+          <div>होम</div>
+        </a>
+        <a href="#avsar" className={styles.navItem} onClick={(e) => navigateApp('avsar', e)}>
+          <Briefcase size={24} strokeWidth={2} className={styles.navIcon} />
+          <div>अवसर सेतु</div>
+        </a>
+        <div className={styles.navItemFabPlaceholder}></div>
+        <a href="#kaushal" className={`${styles.navItem} ${styles.active}`} onClick={(e) => navigateApp('kaushal', e)}>
+          <BookOpenText size={24} strokeWidth={2} className={styles.navIcon} />
+          <div>कौशल केंद्र</div>
+        </a>
+        <a href="#logistics" className={styles.navItem} onClick={(e) => navigateApp('logistics', e)}>
+          <Truck size={24} strokeWidth={2} className={styles.navIcon} />
+          <div>सुगम लॉजिस्टिक्स</div>
+        </a>
       </div>
       
       <Script
